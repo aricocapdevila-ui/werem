@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="chat-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <h1>Chat (24h)</h1>
+
+    <div id="login-area">
+      <form id="loginForm">
+        <label>Usuario</label>
+        <input type="text" id="loginUser" required>
+
+        <label>Contraseña</label>
+        <input type="password" id="loginPass" required>
+
+        <button type="submit">Entrar</button>
+      </form>
+      <p>¿No tienes cuenta? <a href="formulario.html">Completa el formulario</a></p>
+      
+      <div style="background: #e8f4f8; padding: 15px; border-radius: 6px; margin-top: 20px; border-left: 4px solid #4b3278;">
+        <p style="margin: 0 0 10px 0; font-weight: bold; color: #4b3278;">🔑 Credenciales de prueba:</p>
+        <p style="margin: 5px 0; font-size: 14px;"><strong>Usuario:</strong> maria.demo</p>
+        <p style="margin: 5px 0; font-size: 14px;"><strong>Contraseña:</strong> werem2026</p>
+      </div>
+    </div>
+
+    <div id="chat-area" style="display:none;">
+      <div class="chat-header">
+        <div>
+          <h2 id="welcome" style="margin: 0; font-size: 18px;"></h2>
+          <p style="margin: 5px 0 0 0; font-size: 13px; color: rgba(255,255,255,0.9);">Chat de Apoyo 24h - Respuesta inmediata</p>
+        </div>
+        <div>
+          <button id="qrBtn" class="qr-btn" title="Compartir con QR">📱 QR</button>
+          <button id="clearChatBtn" class="clear-btn" title="Borrar conversación">🗑️ Borrar</button>
+          <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
+        </div>
+      </div>
+
+      <div id="chat-messages" class="chat-messages">
+        <!-- Los mensajes aparecerán aquí dinámicamente -->
+      </div>
+
+      <div class="chat-input-area">
+        <textarea 
+          id="messageInput" 
+          placeholder="Escribe tu mensaje aquí... (Presiona Enter para enviar, Shift+Enter para nueva línea)"
+          rows="2"
+        ></textarea>
+        <button id="sendBtn" class="send-btn">
+          <span>Enviar</span>
+          <span style="font-size: 18px;">➤</span>
+        </button>
+      </div>
+
+      <div class="chat-info">
+        <p style="margin: 0; font-size: 12px; color: #999;">
+          💬 Chat cifrado y privado | 🔒 Tus mensajes están protegidos | 
+          <a href="index.html" style="color: #c84a70;">Volver a Inicio</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- MODAL QR -->
+    <div id="qrModal" class="qr-modal">
+      <div class="qr-modal-content">
+        <h3>Comparte el Chat</h3>
+        <p>Escanea este código QR desde tu móvil para acceder al chat de WeRem</p>
+        <div id="qrContainer" style="display: flex; justify-content: center;"></div>
+        <p style="font-size: 12px; color: #999; margin-top: 15px;" id="urlText"></p>
+        <div class="qr-modal-buttons">
+          <button class="qr-close-btn" onclick="document.getElementById('qrModal').classList.remove('show')">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .chat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: linear-gradient(135deg, #c84a70 0%, #8B4789 100%);
+        color: white;
+        border-radius: 8px 8px 0 0;
+        margin-bottom: 0;
+      }
+
+      .clear-btn {
+        background: rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.25);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        margin-right: 10px;
+      }
+
+      .clear-btn:hover {
+        background: rgba(255,100,100,0.4);
+        border-color: rgba(255,255,255,0.4);
+        transform: translateY(-2px);
+      }
+
+      .qr-btn {
+        background: rgba(100,200,255,0.3);
+        border: 1px solid rgba(255,255,255,0.25);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        margin-right: 10px;
+      }
+
+      .qr-btn:hover {
+        background: rgba(100,200,255,0.5);
+        border-color: rgba(255,255,255,0.4);
+        transform: translateY(-2px);
+      }
+
+      .qr-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .qr-modal.show {
+        display: flex;
+      }
+
+      .qr-modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        max-width: 400px;
+        width: 90%;
+      }
+
+      .qr-modal-content h3 {
+        margin-top: 0;
+        color: #c84a70;
+        font-size: 18px;
+      }
+
+      .qr-modal-content p {
+        color: #666;
+        font-size: 14px;
+        margin: 10px 0;
+      }
+
+      .qr-close-btn {
+        background: #c84a70;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+
+      .qr-close-btn:hover {
+        background: #a03860;
+      }
+
+      /* RESPONSIVE MOBILE */
+      @media (max-width: 768px) {
+        .chat-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .chat-header div:last-child {
+          display: flex;
+          gap: 5px;
+          flex-wrap: wrap;
+          width: 100%;
+        }
+
+        .chat-header button {
+          flex: 1;
+          min-width: 70px;
+          padding: 8px 10px;
+          font-size: 12px;
+        }
+
+        .chat-messages {
+          height: 400px;
+        }
+
+        .message {
+          max-width: 85%;
+        }
+
+        .message-content {
+          padding: 10px 12px;
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body.chat-page {
+          padding: 0;
+        }
+
+        #chat-container {
+          min-height: 100vh;
+          border-radius: 0;
+        }
+
+        .chat-header {
+          padding: 12px;
+          border-radius: 0;
+        }
+
+        .chat-header h2 {
+          font-size: 16px;
+        }
+
+        .chat-header p {
+          font-size: 12px;
+        }
+
+        .chat-messages {
+          height: calc(100vh - 200px);
+          padding: 15px;
+        }
+
+        .message {
+          max-width: 95%;
+        }
+
+        .chat-input-area {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        #messageInput {
+          min-height: 60px;
+          font-size: 16px;
+        }
+
+        .send-btn {
+          padding: 12px;
+          font-size: 14px;
+        }
+
+        .chat-info {
+          padding: 10px;
+          font-size: 11px;
+        }
+
+        .qr-modal-content {
+          padding: 20px;
+          max-width: 95vw;
+        }
+      }
+
+      .logout-btn {
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.3);
+        padding: 8px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.3s;
+      }
+
+      .logout-btn:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-2px);
+      }
+
+      .chat-messages {
+        height: 450px;
+        overflow-y: auto;
+        padding: 20px;
+        background: #f5f5f5;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        scroll-behavior: smooth;
+      }
+
+      .message {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        max-width: 70%;
+        animation: fadeIn 0.3s;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .message.user {
+        align-self: flex-end;
+        align-items: flex-end;
+      }
+
+      .message.system {
+        align-self: flex-start;
+        align-items: flex-start;
+      }
+
+      .message-content {
+        padding: 12px 15px;
+        border-radius: 12px;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+      }
+
+      .message.user .message-content {
+        background: #c84a70;
+        color: white;
+        border-bottom-right-radius: 4px;
+      }
+
+      .message.system .message-content {
+        background: white;
+        color: #333;
+        border: 1px solid #ddd;
+        border-bottom-left-radius: 4px;
+      }
+
+      .message-time {
+        font-size: 11px;
+        color: #999;
+        margin-top: 5px;
+        padding: 0 5px;
+      }
+
+      .message-sender {
+        font-size: 12px;
+        font-weight: bold;
+        color: #8B4789;
+        margin-bottom: 5px;
+        padding: 0 5px;
+      }
+
+      .chat-input-area {
+        display: flex;
+        gap: 10px;
+        padding: 15px;
+        background: white;
+        border: 1px solid #ddd;
+        border-top: 2px solid #c84a70;
+      }
+
+      #messageInput {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 14px;
+        resize: none;
+        transition: border-color 0.3s;
+      }
+
+      #messageInput:focus {
+        outline: none;
+        border-color: #c84a70;
+      }
+
+      .send-btn {
+        background: #c84a70;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s;
+      }
+
+      .send-btn:hover {
+        background: #a83d5c;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(200, 74, 112, 0.3);
+      }
+
+      .send-btn:active {
+        transform: translateY(0);
+      }
+
+      .chat-info {
+        padding: 10px 15px;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        text-align: center;
+      }
+
+      .typing-indicator {
+        display: none;
+        padding: 10px;
+        background: white;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        max-width: 70px;
+      }
+
+      .typing-indicator.active {
+        display: block;
+      }
+
+      .typing-dots {
+        display: flex;
+        gap: 4px;
+      }
+
+      .typing-dots span {
+        width: 8px;
+        height: 8px;
+        background: #999;
+        border-radius: 50%;
+        animation: typing 1.4s infinite;
+      }
+
+      .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typing {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-10px); }
+      }
+    </style>
+
+    <script>
+      // Verificar acceso al chat antes de cargar la página
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!verificarAcceso('chat', 'Chat de Apoyo 24h')) {
+          return;
+        }
+        
+        (function(){
+          let currentUser = null;
+
+          async function hashPassword(pwd) {
+            const enc = new TextEncoder();
+            const data = enc.encode(pwd);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+          }
+
+          // Crear usuario de prueba si no existe
+          async function inicializarUsuarioPrueba() {
+            const users = JSON.parse(localStorage.getItem('werem_users') || '{}');
+            if (!users['maria.demo']) {
+              const hash = await hashPassword('werem2026');
+              users['maria.demo'] = {
+                hash: hash,
+                nombre: 'María Demo'
+              };
+              localStorage.setItem('werem_users', JSON.stringify(users));
+            }
+          }
+          
+          inicializarUsuarioPrueba();
+
+          function showChatFor(user) {
+            currentUser = user;
+            document.getElementById('login-area').style.display = 'none';
+            document.getElementById('chat-area').style.display = 'block';
+            document.getElementById('welcome').textContent = user;
+            
+            // Cargar mensajes existentes
+            loadMessages();
+            
+            // Mensaje de bienvenida del sistema si es primera vez
+            const chatKey = 'werem_chat_' + user;
+            const messages = JSON.parse(localStorage.getItem(chatKey) || '[]');
+            if (messages.length === 0) {
+              setTimeout(() => {
+                addSystemMessage('¡Bienvenida al chat de WeRem! Estoy aquí para ayudarte. ¿En qué puedo asistirte hoy?');
+              }, 500);
+            }
+          }
+
+          function loadMessages() {
+            const chatKey = 'werem_chat_' + currentUser;
+            const messages = JSON.parse(localStorage.getItem(chatKey) || '[]');
+            const messagesContainer = document.getElementById('chat-messages');
+            messagesContainer.innerHTML = '';
+            
+            messages.forEach(msg => {
+              displayMessage(msg.text, msg.sender, msg.timestamp, false);
+            });
+            
+            scrollToBottom();
+          }
+
+          function saveMessage(text, sender) {
+            const chatKey = 'werem_chat_' + currentUser;
+            const messages = JSON.parse(localStorage.getItem(chatKey) || '[]');
+            const timestamp = new Date().toISOString();
+            
+            messages.push({
+              text: text,
+              sender: sender,
+              timestamp: timestamp
+            });
+            
+            localStorage.setItem(chatKey, JSON.stringify(messages));
+            return timestamp;
+          }
+
+          function displayMessage(text, sender, timestamp, animate = true) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ' + (sender === 'user' ? 'user' : 'system');
+            
+            const time = new Date(timestamp);
+            const timeString = time.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            
+            let senderName = '';
+            if (sender === 'system') {
+              senderName = '<div class="message-sender">Equipo de Apoyo WeRem</div>';
+            }
+            
+            messageDiv.innerHTML = `
+              ${senderName}
+              <div class="message-content">${escapeHtml(text)}</div>
+              <div class="message-time">${timeString}</div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+          }
+
+          function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+          }
+
+          function scrollToBottom() {
+            const messagesContainer = document.getElementById('chat-messages');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+
+          function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const text = input.value.trim();
+            
+            if (!text) return;
+            
+            // Guardar y mostrar mensaje del usuario
+            const timestamp = saveMessage(text, 'user');
+            displayMessage(text, 'user', timestamp);
+            
+            input.value = '';
+            input.focus();
+            
+            // Simular respuesta automática del sistema
+            setTimeout(() => {
+              respondToMessage(text);
+            }, 1000 + Math.random() * 2000);
+          }
+
+          function addSystemMessage(text) {
+            const timestamp = saveMessage(text, 'system');
+            displayMessage(text, 'system', timestamp);
+          }
+
+          function respondToMessage(userMessage) {
+            const lowerMsg = userMessage.toLowerCase();
+            let response = '';
+            
+            // Respuestas automáticas basadas en palabras clave
+            if (lowerMsg.includes('ayuda') || lowerMsg.includes('necesito')) {
+              response = 'Estoy aquí para apoyarte. ¿Qué tipo de ayuda necesitas? Tenemos servicios de apoyo psicológico, asesoramiento jurídico, talleres y más.';
+            } else if (lowerMsg.includes('urgente') || lowerMsg.includes('emergencia')) {
+              response = 'Si estás en una situación de emergencia inmediata, por favor llama al 016 (llamada gratuita y sin aparecer en la factura). También puedes llamar al 112. Estamos aquí para ayudarte.';
+            } else if (lowerMsg.includes('psicolog') || lowerMsg.includes('ansiedad') || lowerMsg.includes('depresi')) {
+              response = 'Contamos con apoyo psicológico especializado. Puedes acceder desde la sección de Servicios > Apoyo Psicológico. ¿Te gustaría que te ayude a agendar una sesión?';
+            } else if (lowerMsg.includes('legal') || lowerMsg.includes('abogad') || lowerMsg.includes('denuncia')) {
+              response = 'Nuestro equipo jurídico puede asesorarte sobre órdenes de protección, divorcio, custodia y más. Accede a Servicios > Asesoramiento Jurídico para más información.';
+            } else if (lowerMsg.includes('taller') || lowerMsg.includes('formacion')) {
+              response = 'Tenemos talleres virtuales desde marzo hasta octubre sobre seguridad digital, empoderamiento, recursos legales y bienestar. Consulta el calendario en Servicios > Talleres Virtuales.';
+            } else if (lowerMsg.includes('plan') || lowerMsg.includes('precio')) {
+              response = 'Ofrecemos tres planes: Básico (gratuito), Pro (15€/mes) y Premium (30€/mes). Cada uno con diferentes niveles de acceso. Consulta más detalles en la sección Planes.';
+            } else if (lowerMsg.includes('gracias') || lowerMsg.includes('thank')) {
+              response = 'De nada. Estamos aquí para ti siempre que lo necesites. ¿Hay algo más en lo que pueda ayudarte?';
+            } else if (lowerMsg.includes('hola') || lowerMsg.includes('buenas') || lowerMsg.includes('buenos')) {
+              response = '¡Hola! ¿Cómo puedo ayudarte hoy? Estoy disponible 24/7 para responder tus preguntas.';
+            } else {
+              const responses = [
+                'Gracias por tu mensaje. Un miembro de nuestro equipo revisará tu consulta y te responderá pronto. ¿Hay algo específico en lo que pueda ayudarte ahora?',
+                'Entiendo. ¿Puedes contarme un poco más sobre tu situación para poder orientarte mejor?',
+                'He recibido tu mensaje. Mientras te asigno un especialista, ¿te gustaría explorar nuestros recursos de apoyo inmediato?',
+                'Gracias por confiar en WeRem. ¿Qué tipo de apoyo necesitas en este momento? Psicológico, jurídico, o información sobre nuestros servicios?'
+              ];
+              response = responses[Math.floor(Math.random() * responses.length)];
+            }
+            
+            addSystemMessage(response);
+          }
+
+          // Auto-login if session exists
+          const sessionUser = localStorage.getItem('werem_session');
+          if (sessionUser) {
+            showChatFor(sessionUser);
+          }
+
+          document.getElementById('loginForm').addEventListener('submit', async function(e){
+            e.preventDefault();
+            const user = document.getElementById('loginUser').value.trim();
+            const pass = document.getElementById('loginPass').value;
+            const users = JSON.parse(localStorage.getItem('werem_users') || '{}');
+            if (!users[user]) { alert('Usuario no encontrado. Completa el formulario para registrarte.'); return; }
+            const hash = await hashPassword(pass);
+            if (hash !== users[user].hash) { alert('Contraseña incorrecta.'); return; }
+            localStorage.setItem('werem_session', user);
+            showChatFor(user);
+          });
+
+          document.getElementById('logoutBtn').addEventListener('click', function(){
+            localStorage.removeItem('werem_session');
+            location.reload();
+          });
+
+          document.getElementById('clearChatBtn').addEventListener('click', function(){
+            if (confirm('¿Estás segura de que quieres borrar toda la conversación? Esta acción no se puede deshacer.')) {
+              const chatKey = 'werem_chat_' + currentUser;
+              localStorage.removeItem(chatKey);
+              document.getElementById('chat-messages').innerHTML = '';
+              setTimeout(() => {
+                addSystemMessage('La conversación ha sido borrada. ¿En qué puedo ayudarte?');
+              }, 300);
+            }
+          });
+
+          // Botón QR
+          document.getElementById('qrBtn').addEventListener('click', function(){
+            const modal = document.getElementById('qrModal');
+            const container = document.getElementById('qrContainer');
+            
+            container.innerHTML = '';
+            
+            // URL del chat
+            let chatUrl = window.location.href;
+            if (!chatUrl.includes('chat.html')) {
+              chatUrl = window.location.href + 'chat.html';
+            }
+            
+            // Generar QR
+            new QRCode(container, {
+              text: chatUrl,
+              width: 250,
+              height: 250,
+              colorDark: '#c84a70',
+              colorLight: '#ffffff',
+              correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            document.getElementById('urlText').textContent = chatUrl;
+            modal.classList.add('show');
+          });
+
+          // Cerrar modal QR al hacer clic fuera
+          document.getElementById('qrModal').addEventListener('click', function(e){
+            if (e.target === this) {
+              this.classList.remove('show');
+            }
+          });
+
+          // Enviar mensaje con botón
+          document.getElementById('sendBtn').addEventListener('click', sendMessage);
+
+          // Enviar mensaje con Enter (Shift+Enter para nueva línea)
+          document.getElementById('messageInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              sendMessage();
+            }
+          });
+        })();
+      });
+
+  function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("oculto");
+  }
+    </script>
+  </div>
+
+<!-- SECCIONES INFORMATIVAS AL FINAL (pie de página) -->
+<footer class="info-sections">
+  <div class="info-section">
+    <h3>Contacto</h3>
+    <p>Teléfono: +34 600 000 000</p>
+    <p>Correo: contacto@werem.org</p>
+    <p>Instagram: <a href="https://www.instagram.com/tu_cuenta" target="_blank" rel="noopener">@tu_cuenta</a></p>
+  </div>
+
+  <hr />
+
+  <div class="info-section">
+    <h3>Marco legal</h3>
+    <p>Esta web se apoya en la normativa vigente sobre atención y protección a víctimas. Consulta el marco legal completo en <a href="legal.html">la página de marco legal</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

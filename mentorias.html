@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mentorías y Redes de Apoyo - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <h1>Mentorías y Redes de Apoyo</h1>
+    <p>Acompañamiento entre pares y mentorías guiadas para compartir experiencias y construir una red de apoyo segura.</p>
+
+    <script>
+      // Verificar acceso a mentorías cuando carga la página
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!verificarAcceso('mentorias', 'Mentorías y Redes de Apoyo')) {
+          // Si no tiene acceso, la función mostrarAccesoDenegado renderizará la página
+          return;
+        }
+      });
+    </script>
+
+    <!-- CONTENIDO DEL SERVICIO -->
+    <div class="accordion" style="margin-top: 30px;">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ ¿Qué es una Mentoría?</button>
+      <div class="accordion-content">
+        <h3>Acompañamiento personalizado de pares</h3>
+        <p>Una mentora es una mujer que ha pasado por una situación similar a la tuya y ha logrado recuperarse. Ella te guiará en tu camino de recuperación compartiendo:</p>
+        <ul>
+          <li>Su experiencia personal y lecciones aprendidas</li>
+          <li>Estrategias que funcionaron para ella</li>
+          <li>Apoyo emocional y comprensión genuina</li>
+          <li>Conexión con una comunidad de apoyo</li>
+          <li>Esperanza y motivación para tu recuperación</li>
+        </ul>
+        <p><strong>Duración:</strong> Sesiones mensuales de 1 hora</p>
+        <p><strong>Disponible en:</strong> Plan Pro y Premium</p>
+        <button onclick="solicitarMentora()" style="background: #c84a70; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px;">Solicitar Mentoría</button>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Redes de Apoyo Local</button>
+      <div class="accordion-content">
+        <h3>Conecta con tu comunidad</h3>
+        <p>Participa en redes de apoyo presencial en tu ciudad:</p>
+        <ul>
+          <li><strong>Reuniones Mensuales:</strong> Encuentros de mujeres para compartir experiencias</li>
+          <li><strong>Actividades Conjuntas:</strong> Talleres, cines, cafés seguros</li>
+          <li><strong>Grupos Temáticos:</strong> Madres, jóvenes, profesionales, etc.</li>
+          <li><strong>Eventos Especiales:</strong> Celebraciones de hitos de recuperación</li>
+        </ul>
+        <p><strong>Próximo evento:</strong> Martes 21 de enero, 18:00 - "Cine y Conversatorio"</p>
+        <button onclick="verEventos()" style="background: #4b3278; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px;">Ver Eventos Disponibles</button>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Redes Digitales Seguras</button>
+      <div class="accordion-content">
+        <h3>Comunidad online privada</h3>
+        <p>Accede a espacios digitales seguros donde puedes:</p>
+        <ul>
+          <li>Chatear con otras mujeres en recuperación</li>
+          <li>Compartir recursos y consejos</li>
+          <li>Participar en debates moderados</li>
+          <li>Acceder a contenido exclusivo</li>
+          <li>Mantener tu anonimato si lo deseas</li>
+        </ul>
+        <p><strong>Plataformas:</strong></p>
+        <ul>
+          <li>Comunidad privada en Telegram (grupos seguros)</li>
+          <li>Foro web con moderación 24/7</li>
+          <li>WhatsApp Business para apoyo urgente</li>
+        </ul>
+        <button onclick="unirseRed()" style="background: #c84a70; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px;">Unirme a la Red Digital</button>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Convertirse en Mentora</button>
+      <div class="accordion-content">
+        <h3>Ayuda a otras mujeres desde tu experiencia</h3>
+        <p>Si has avanzado significativamente en tu recuperación, considera convertirte en mentora. Requisitos:</p>
+        <ul>
+          <li>Estar en recuperación hace al menos 6 meses</li>
+          <li>Completar programa de formación de mentores</li>
+          <li>Demostrar estabilidad emocional</li>
+          <li>Comprometerse con confidencialidad absoluta</li>
+          <li>Disponibilidad para sesiones mensuales</li>
+        </ul>
+        <p>El programa incluye capacitación, supervisión y apoyo continuo.</p>
+        <button onclick="interesarMentora()" style="background: #4b3278; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px;">Expresar Interés en Ser Mentora</button>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px;"><a href="servicios.html">Volver a Servicios</a></p>
+  </div>
+
+  <style>
+    .accordion {
+      margin-bottom: 15px;
+    }
+    
+    .accordion-btn {
+      width: 100%;
+      padding: 15px;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+    
+    .accordion-btn:hover {
+      background: #e8e8e8;
+    }
+    
+    .accordion-content {
+      display: none;
+      padding: 15px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+    }
+    
+    .accordion-content h3 {
+      color: #c84a70;
+      margin-top: 0;
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector(".menu").classList.toggle("oculto");
+    }
+
+    function toggleAccordion(btn) {
+      const content = btn.nextElementSibling;
+      content.style.display = content.style.display === "block" ? "none" : "block";
+      btn.classList.toggle("active");
+    }
+
+    function solicitarMentora() {
+      alert('Tu solicitud ha sido registrada. Te contactaremos para asignarte una mentora compatible.');
+    }
+
+    function verEventos() {
+      alert('Te mostraremos los eventos disponibles en tu zona. Próximamente se mostrará un calendario interactivo.');
+    }
+
+    function unirseRed() {
+      alert('Te enviaremos enlaces para unirte a nuestras comunidades digitales seguras.');
+    }
+
+    function interesarMentora() {
+      alert('Tu interés ha sido registrado. Te enviaremos información sobre el programa de formación de mentoras.');
+    }
+  </script>
+
+</body>
+</html>

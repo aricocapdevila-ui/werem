@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Guía - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <div class="guia-informativa">
+      <div class="guia-header">
+        <span class="guia-icono">📖</span>
+        <h1>Guía de Uso de la Plataforma WeRem</h1>
+      </div>
+      <div class="guia-content">
+        <p class="guia-intro">Esta guía te ayudará a navegar por nuestra plataforma y acceder a todos los recursos disponibles de forma segura y confidencial.</p>
+        
+        <div class="guia-pasos">
+          <div class="guia-paso">
+            <div class="paso-numero">1</div>
+            <div class="paso-contenido">
+              <h3>Registro y Acceso Seguro</h3>
+              <p>Completa el <a href="formulario.html">formulario de registro</a> con tus datos. Toda la información es confidencial y está protegida. Puedes usar un seudónimo si prefieres mantener tu identidad privada.</p>
+            </div>
+          </div>
+
+          <div class="guia-paso">
+            <div class="paso-numero">2</div>
+            <div class="paso-contenido">
+              <h3>Evaluación Inicial</h3>
+              <p>Completa el cuestionario inicial para ayudarnos a entender tu situación y ofrecerte el apoyo más adecuado. Esta evaluación es voluntaria y puedes omitir preguntas si lo deseas.</p>
+            </div>
+          </div>
+
+          <div class="guia-paso">
+            <div class="paso-numero">3</div>
+            <div class="paso-contenido">
+              <h3>Explora los Servicios</h3>
+              <p>Navega por los servicios disponibles: chat 24h, asesoramiento jurídico, apoyo psicológico, talleres virtuales y foro seguro. Usa los que necesites cuando los necesites.</p>
+            </div>
+          </div>
+
+          <div class="guia-paso">
+            <div class="paso-numero">4</div>
+            <div class="paso-contenido">
+              <h3>Participa en Talleres</h3>
+              <p>Consulta el calendario de talleres virtuales. Puedes unirte sin necesidad de activar tu cámara. Solo los profesionales serán visibles durante las sesiones.</p>
+            </div>
+          </div>
+
+          <div class="guia-paso">
+            <div class="paso-numero">5</div>
+            <div class="paso-contenido">
+              <h3>Seguimiento y Evaluación</h3>
+              <p>Completa las evaluaciones intermedias y finales para que podamos ajustar el apoyo según tu evolución. Tu feedback nos ayuda a mejorar.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="guia-recursos">
+          <h3>Recursos de Emergencia</h3>
+          <div class="recursos-grid">
+            <div class="recurso-item">
+              <span class="recurso-icono">🚨</span>
+              <strong>Emergencias</strong>
+              <p>112</p>
+            </div>
+            <div class="recurso-item">
+              <span class="recurso-icono">📞</span>
+              <strong>Violencia Género 24h</strong>
+              <p>016</p>
+            </div>
+            <div class="recurso-item">
+              <span class="recurso-icono">💬</span>
+              <strong>WhatsApp 24h</strong>
+              <p>600 000 016</p>
+            </div>
+            <div class="recurso-item">
+              <span class="recurso-icono">🌐</span>
+              <strong>Chat en línea</strong>
+              <p><a href="chat.html">Acceder ahora</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="guia-consejos">
+          <h3>Consejos de Seguridad Digital</h3>
+          <ul>
+            <li>✓ Borra el historial de navegación después de usar esta web</li>
+            <li>✓ Usa modo incógnito/privado en tu navegador</li>
+            <li>✓ No guardes contraseñas en navegadores compartidos</li>
+            <li>✓ Si estás en peligro, sal rápidamente pulsando ESC dos veces</li>
+            <li>✓ Todos los datos están encriptados y son confidenciales</li>
+          </ul>
+        </div>
+
+        <div class="guia-footer">
+          <p><strong>¿Necesitas ayuda inmediata?</strong> Usa el <a href="chat.html">chat 24h</a> o llama al 016 (no deja rastro en el historial de llamadas).</p>
+        </div>
+      </div>
+    </div>
+
+    <p><a href="index.html">Volver al inicio</a></p>
+  </div>
+
+  <script>
+  function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("oculto");
+  }
+  </script>
+
+<!-- SECCIONES INFORMATIVAS AL FINAL (pie de página) -->
+<footer class="info-sections">
+  <div class="info-section">
+    <h3>Contacto</h3>
+    <p>Teléfono: +34 600 000 000</p>
+    <p>Correo: contacto@werem.org</p>
+    <p>Instagram: <a href="https://www.instagram.com/tu_cuenta" target="_blank" rel="noopener">@tu_cuenta</a></p>
+  </div>
+
+  <hr />
+
+  <div class="info-section">
+    <h3>Marco legal</h3>
+    <p>Esta web se apoya en la normativa vigente sobre atención y protección a víctimas. Consulta el marco legal completo en <a href="legal.html">la página de marco legal</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

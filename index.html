@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+
+<body class="home-page">
+
+  <div class="home">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+
+
+
+    <div class="contenido">
+      <div class="logo">
+ <img src="img/logo-rem.png" alt="Logo REM" class="logo-formulario">
+
+
+</div>
+
+
+
+      <div class="lema">
+        <p>Levanta tu voz, no tu miedo.</p>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- SECCIÓN 'QUIÉNES SOMOS' -->
+  <section id="informacion" class="info-about">
+    <div class="contenedor">
+      <h2>QUIÉNES SOMOS</h2>
+
+      <!-- CONTADOR DE MUJERES REGISTRADAS -->
+      <div id="contador-section" style="background-color: #f0f0f0; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center;">
+        <p style="margin: 0; font-weight: bold; font-size: 16px;">Mujeres registradas y validadas: <span id="contador">0</span> / 50</p>
+      </div>
+      <p>Somos un equipo interdisciplinar que ofrece atención integral y segura a mujeres en situación de violencia.</p>
+
+      <p>Nuestro equipo está compuesto por profesionales de diversas disciplinas que colaboran para proporcionar un apoyo integral y especializado, garantizando una atención completa y segura en todos los aspectos necesarios.</p>
+
+      <p>Desarrollamos materiales como guías, vídeos e infografías destinados al empoderamiento y formación de las usuarias.</p>
+
+      <p>Además, utilizamos registros anonimizados para el seguimiento y mejora continua del servicio.</p>
+
+      <p>Contamos con una plataforma web que incorpora cifrado avanzado, herramientas de videoconferencia seguras y sistemas de control para garantizar la seguridad y moderación en todo momento.</p>
+
+      <details style="margin-top: 20px;">
+        <summary style="font-weight: bold; font-size: 16px; cursor: pointer;">Normas de uso</summary>
+        <div style="margin-top: 10px; line-height: 1.6;">
+          <p>1) Respeto y seguridad: mantén un trato respetuoso y evita compartir datos personales sensibles en espacios públicos.</p>
+          <p>2) Veracidad de la información: proporciona datos reales para facilitar un apoyo adecuado.</p>
+          <p>3) Uso responsable: evita difundir contenido que pueda resultar dañino, ofensivo o intimidatorio.</p>
+          <p>4) Privacidad: no compartas credenciales ni información de otras usuarias.</p>
+          <p>5) Participación activa: mantén disposición para participar en los recursos y actividades de la plataforma.</p>
+          <p>6) Aceptación y privacidad: usa REM aceptando expresamente las condiciones de uso y respetando siempre la confidencialidad de todas las personas.</p>
+          <p>7) Privacidad y ciberseguridad: protege tus datos, mantén el anonimato cuando sea necesario y utiliza la plataforma en entornos seguros.</p>
+          <p>8) Respeto y no discriminación: actúa siempre con respeto, empatía y sin discriminar a nadie.</p>
+          <p>9) Contenido ofensivo: quedan prohibidos insultos, amenazas o publicaciones ofensivas.</p>
+          <p>10) Confidencialidad y anonimato: respeta la privacidad y el anonimato de todas las personas usuarias.</p>
+          <p>11) Protección de datos: no compartas datos personales ni realices capturas de pantalla.</p>
+          <p>12) Foros y chats: son espacios de apoyo, no de juicio ni confrontación.</p>
+          <p>13) Consecuencias: el incumplimiento de las normas puede implicar suspensión o expulsión de la plataforma.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- SECCIONES INFORMATIVAS AL FINAL (pie de página) -->
+  <footer class="info-sections">
+    <div class="info-section">
+      <h3>Contacto</h3>
+      <p>Teléfono: +34 600 000 000</p>
+      <p>Correo: contacto@werem.org</p>
+      <p>Instagram: <a href="https://www.instagram.com/tu_cuenta" target="_blank" rel="noopener">@tu_cuenta</a></p>
+    </div>
+
+    <hr />
+
+    <div class="info-section">
+      <h3>Marco legal</h3>
+      <p>Esta web se apoya en la normativa vigente sobre atención y protección a víctimas. Consulta el marco legal completo en <a href="legal.html">la página de marco legal</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+  function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("oculto");
+  }
+
+  // Mostrar el contador al cargar la página
+  document.addEventListener('DOMContentLoaded', function() {
+    const contador = localStorage.getItem('werem_mujeres_registradas') || 0;
+    document.getElementById('contador').textContent = contador;
+    
+    // Si se alcanzó el límite, mostrar mensaje
+    if (parseInt(contador) >= 50) {
+      document.getElementById('contador-section').innerHTML = '<p style="margin: 0; font-weight: bold; font-size: 16px; color: red;">Se ha alcanzado el límite de 50 mujeres. El formulario no está disponible temporalmente.</p>';
+    }
+  });
+</script>
+
+
+</body>
+</html>

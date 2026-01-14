@@ -1,0 +1,1143 @@
+/* =========================
+   VARIABLES DE COLOR
+   ========================= */
+:root {
+  --primary-purple: #8B4789;
+  --primary-rose: #d4577b;
+  --primary-green: #5f9876;
+  --primary-blue: #4a7ba7;
+  --primary-coral: #e07856;
+  --light-purple: #f0e6f5;
+  --light-rose: #fce4ec;
+  --light-green: #e8f5e9;
+  --light-blue: #e3f2fd;
+}
+
+/* =========================
+   ESTILOS GENERALES
+   ========================= */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #f9f8fb 0%, #f5f9fc 100%);
+}
+
+p {
+  text-align: justify;
+  color: #333;
+}
+
+/* =========================
+   ACORDEONES
+   ========================= */
+
+.accordion {
+  margin-bottom: 10px;
+  border: 1px solid #e0d5e8;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(139, 71, 137, 0.08);
+  transition: all 0.3s ease;
+}
+
+.accordion:hover {
+  box-shadow: 0 4px 12px rgba(139, 71, 137, 0.12);
+}
+
+.accordion-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(90deg, #8B4789 0%, #d4577b 100%);
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.accordion-btn:hover {
+  background: linear-gradient(90deg, #6d3566 0%, #b93f5f 100%);
+  transform: translateX(4px);
+}
+
+.accordion-content {
+  display: none;
+  padding: 15px;
+  background: linear-gradient(135deg, #fafafa 0%, #f5f0f7 100%);
+  border-top: 2px solid #d4577b;
+}
+
+.accordion-content p {
+  margin: 10px 0;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.accordion-content h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.accordion-content h4 {
+  margin: 15px 0 10px 0;
+  color: #555;
+  font-size: 15px;
+}
+
+/* =========================
+   GUÍA INFORMATIVA
+   ========================= */
+
+.guia-informativa {
+  margin: 30px 0 50px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f0f7 100%);
+  border-radius: 12px;
+  border-left: 5px solid #8B4789;
+  box-shadow: 0 4px 16px rgba(139, 71, 137, 0.15);
+  overflow: hidden;
+}
+
+.guia-header {
+  background: linear-gradient(90deg, #8B4789 0%, #d4577b 100%);
+  color: white;
+  padding: 25px 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.guia-icono {
+  font-size: 36px;
+}
+
+.guia-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.guia-content {
+  padding: 30px;
+}
+
+.guia-intro {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  text-align: center;
+  font-style: italic;
+}
+
+.guia-pasos {
+  margin: 30px 0;
+}
+
+.guia-paso {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.guia-paso:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(139, 71, 137, 0.1);
+}
+
+.paso-numero {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #8B4789 0%, #d4577b 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(139, 71, 137, 0.3);
+}
+
+.paso-contenido h3 {
+  margin: 0 0 10px 0;
+  color: #8B4789;
+  font-size: 18px;
+}
+
+.paso-contenido p {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.paso-contenido a {
+  color: #d4577b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.paso-contenido a:hover {
+  color: #8B4789;
+  text-decoration: underline;
+}
+
+.guia-recursos {
+  margin: 40px 0;
+  padding: 25px;
+  background: linear-gradient(135deg, #fce4ec 0%, #f0e6f5 100%);
+  border-radius: 8px;
+  border-left: 4px solid #d4577b;
+}
+
+.guia-recursos h3 {
+  margin: 0 0 20px 0;
+  color: #8B4789;
+  text-align: center;
+  font-size: 20px;
+}
+
+.recursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.recurso-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.recurso-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.recurso-icono {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.recurso-item strong {
+  display: block;
+  color: #8B4789;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.recurso-item p {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.recurso-item a {
+  color: #d4577b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.recurso-item a:hover {
+  color: #8B4789;
+  text-decoration: underline;
+}
+
+.guia-consejos {
+  margin: 30px 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #f0f8f4 100%);
+  border-radius: 8px;
+  border-left: 4px solid #5f9876;
+}
+
+.guia-consejos h3 {
+  margin: 0 0 15px 0;
+  color: #5f9876;
+  font-size: 18px;
+}
+
+.guia-consejos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.guia-consejos li {
+  padding: 8px 0;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.guia-footer {
+  margin-top: 30px;
+  padding: 20px;
+  background: linear-gradient(90deg, #d4577b 0%, #8B4789 100%);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.guia-footer p {
+  margin: 0;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.guia-footer a {
+  color: white;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.guia-footer a:hover {
+  color: #fce4ec;
+}
+
+/* =========================
+   SERVICIOS - GRID DE TARJETAS
+   ========================= */
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin: 40px 0 50px 0;
+}
+
+.servicio-tarjeta {
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.servicio-tarjeta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: left 0.3s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.servicio-tarjeta:hover::before {
+  left: 100%;
+}
+
+.servicio-tarjeta:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.servicio-tarjeta-1 {
+  background: linear-gradient(135deg, #fce4ec 0%, #f0e6f5 100%);
+  border-top-color: #d4577b;
+}
+
+.servicio-tarjeta-2 {
+  background: linear-gradient(135deg, #e8f5e9 0%, #f0f8f4 100%);
+  border-top-color: #5f9876;
+}
+
+.servicio-tarjeta-3 {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f5f0f7 100%);
+  border-top-color: #4a7ba7;
+}
+
+.servicio-icono {
+  font-size: 48px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.servicio-tarjeta:hover .servicio-icono {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.servicio-tarjeta h2 {
+  font-size: 20px;
+  margin: 10px 0;
+  color: #333;
+  position: relative;
+  z-index: 1;
+}
+
+.servicio-tarjeta p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   TALLER VIRTUAL
+   ========================= */
+
+.taller-opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.taller-opcion {
+  flex: 1 1 280px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  background: #fff;
+}
+
+.taller-opcion h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.taller-video {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 6px;
+  margin-top: 10px;
+  display: none;
+  background: #000;
+}
+
+.video-wrapper {
+  background: #111;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.nota {
+  font-size: 13px;
+  color: #555;
+  margin-top: 8px;
+}
+
+.cal-2026 {
+  margin: 20px 0;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.mes-calendario {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f0f7 100%);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #5f9876;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.mes-calendario:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.mes-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #5f9876 0%, #4a7ba7 100%);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  transition: all 0.3s ease;
+  margin: 0;
+  box-shadow: 0 2px 6px rgba(95, 152, 118, 0.2);
+}
+
+.mes-btn::after {
+  content: ' ▼';
+  float: right;
+  transition: transform 0.3s ease;
+}
+
+.mes-btn.expanded::after {
+  content: ' ▲';
+}
+
+.mes-btn:hover {
+  background: linear-gradient(90deg, #4a7ba7 0%, #5f9876 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(95, 152, 118, 0.3);
+}
+
+.dias-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.dia-semana {
+  font-weight: bold;
+  color: white;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  background: linear-gradient(90deg, #8B4789 0%, #d4577b 100%);
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.dias-grid span {
+  padding: 8px 0;
+  border-radius: 4px;
+}
+
+.dias-grid span:not(.dia-semana):not(.vacio) {
+  background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333;
+}
+
+.dias-grid span:not(.dia-semana):not(.vacio):hover {
+  background: linear-gradient(135deg, #5f9876 0%, #4a7ba7 100%);
+  color: white;
+  font-weight: bold;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dias-grid span:not(.dia-semana):not(.vacio):hover {
+  background: linear-gradient(135deg, #5f9876 0%, #4a7ba7 100%);
+  color: white;
+  font-weight: bold;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.vacio {
+  background-color: transparent;
+}
+
+/* =========================
+   MATERIALES DE TALLER
+   ========================= */
+
+.materiales-taller {
+  margin-top: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #f9f8fb 0%, #f5f9fc 100%);
+  border-radius: 12px;
+  border: 2px solid #e0d5e8;
+}
+
+.materiales-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.material-categoria {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 4px solid;
+}
+
+.material-categoria:nth-child(1) {
+  border-top-color: #8B4789;
+}
+
+.material-categoria:nth-child(2) {
+  border-top-color: #d4577b;
+}
+
+.material-categoria:nth-child(3) {
+  border-top-color: #5f9876;
+}
+
+.material-categoria:nth-child(4) {
+  border-top-color: #4a7ba7;
+}
+
+.material-categoria:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(139, 71, 137, 0.12);
+}
+
+.material-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.material-icono {
+  font-size: 32px;
+}
+
+.material-header h4 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.material-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.material-lista li {
+  margin: 10px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.material-lista li::before {
+  content: '📄';
+  position: absolute;
+  left: 0;
+  font-size: 14px;
+}
+
+.material-lista a {
+  color: #555;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.material-lista a:hover {
+  color: #8B4789;
+  transform: translateX(4px);
+  text-decoration: underline;
+}
+
+.materiales-nota {
+  margin-top: 25px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fce4ec 0%, #f0e6f5 100%);
+  border-radius: 8px;
+  border-left: 4px solid #d4577b;
+}
+
+.materiales-nota p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.materiales-nota strong {
+  color: #8B4789;
+}
+
+.video-profesional {
+  background: #111;
+  border-radius: 6px;
+  padding: 4px;
+  text-align: center;
+}
+
+.transmision-profesionales {
+  border: 2px solid #5f9876;
+  padding: 12px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #f0f8f4 100%);
+  box-shadow: inset 0 2px 6px rgba(95, 152, 118, 0.1);
+}
+
+/* =========================
+   FORMULARIOS DE CUESTIONARIOS
+   ========================= */
+
+.cuestionario-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.cuestionario-form {
+  flex: 1;
+}
+
+.cuestionario-form form {
+  background-color: #fff;
+}
+
+.cuestionario-form input[type="text"],
+.cuestionario-form input[type="number"],
+.cuestionario-form input[type="email"],
+.cuestionario-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.cuestionario-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.cuestionario-form input[type="radio"],
+.cuestionario-form input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.btn-enviar {
+  background: linear-gradient(90deg, #d4577b 0%, #8B4789 100%);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(212, 87, 123, 0.3);
+}
+
+.btn-enviar:hover {
+  background: linear-gradient(90deg, #8B4789 0%, #d4577b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(212, 87, 123, 0.4);
+}
+
+.respuesta-gracias {
+  flex: 0 0 250px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #f0f8f4 100%);
+  border: 2px solid #5f9876;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2e7d32;
+  box-shadow: 0 4px 12px rgba(95, 152, 118, 0.2);
+}
+
+.respuesta-gracias p {
+  margin: 0;
+  text-align: center;
+}
+
+/* =========================
+   HOME
+   ========================= */
+
+.home {
+  position: relative;
+  height: 100vh;
+
+  background-image: url("img/mujeres-espaldas.jpg");
+  background-repeat: no-repeat;
+
+  background-size: 75%;          /* la imagen es MÁS PEQUEÑA */
+  background-position: center 30%; /* la BAJAMOS */
+
+  overflow: hidden;
+}
+
+/* Capa oscura sobre la imagen */
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 1;
+}
+
+/* =========================
+   BOTÓN OPCIONES
+   ========================= */
+
+.boton-menu {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 10;
+  background: linear-gradient(90deg, rgba(139, 71, 137, 0.85) 0%, rgba(212, 87, 123, 0.85) 100%);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.boton-menu:hover {
+  background: linear-gradient(90deg, rgba(212, 87, 123, 0.9) 0%, rgba(139, 71, 137, 0.9) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================
+   MENÚ DESPLEGABLE
+   ========================= */
+
+.menu {
+  position: absolute;
+  top: 80px;
+  left: 30px;
+  width: 220px;
+  background: linear-gradient(135deg, rgba(139, 71, 137, 0.85) 0%, rgba(95, 152, 118, 0.85) 100%);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 9;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.menu li {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.menu li:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
+}
+
+.menu li:last-child {
+  border-bottom: none;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.menu a:hover {
+  color: #fff;
+}
+
+/* 👉 CLAVE: el menú NO se ve hasta pulsar Opciones */
+.menu.oculto {
+  display: none;
+}
+
+/* =========================
+   CONTENIDO
+   ========================= */
+
+.contenido {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+/* =========================
+   LOGO (aparece y desaparece en bucle)
+   ========================= */
+
+.logo {
+  position: absolute;
+  top: 30px;
+  right: 20px;          /* más a la derecha */
+  z-index: 10;
+
+  background: none;    /* sin fondo */
+  padding: 0;          /* sin caja */
+
+  opacity: 0.85;       /* se mimetiza */
+  animation: logoFade 6s infinite;
+}
+
+
+
+.logo img {
+  width: 160px;
+  display: block;
+
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+}
+
+
+/* Animación del logo */
+@keyframes logoFade {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  60%  { opacity: 1; }
+  85%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* =========================
+   LEMA
+   ========================= */
+
+.lema {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 2;
+
+  color: white;
+  font-style: italic;
+  font-size: 28px;
+  max-width: 400px;
+}
+
+/* LOGO SOLO DEL FORMULARIO */
+.logo-formulario {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 140px;
+
+  position: static;
+  animation: none;
+  opacity: 1;
+}
+/* =========================
+   =========================
+   FORMULARIO (formulario.html)
+   =========================
+   ========================= */
+
+.form-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f0f7 0%, #e8f5e9 50%, #e3f2fd 100%);
+  font-family: Arial, sans-serif;
+}
+
+/* Contenedor formulario */
+.form-page .contenedor {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 40px;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f0f7 100%);
+  border-radius: 14px;
+  border-left: 5px solid #8B4789;
+  box-shadow: 0 8px 25px rgba(139, 71, 137, 0.15);
+}
+
+/* Logo formulario */
+.form-page .logo-formulario {
+  display: block;
+  margin: 0 auto 30px auto;
+  width: 140px;
+}
+
+/* Lema debajo del logo en el formulario */
+.lema-formulario {
+  text-align: center;
+  font-style: italic;
+  font-size: 18px;
+  color: #3f3a73;   /* violeta oscuro suave */
+  margin-bottom: 30px;
+}
+
+/* Formulario */
+.form-page label {
+  display: block;
+  margin-top: 18px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #333;
+}
+
+.form-page input,
+.form-page select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #d4577b;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+.form-page input:focus,
+.form-page select:focus {
+  outline: none;
+  border-color: #8B4789;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(139, 71, 137, 0.2);
+}
+
+.form-page input[type="file"] {
+  padding: 5px;
+}
+
+/* Botón formulario */
+.form-page button {
+  margin-top: 30px;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background: linear-gradient(90deg, #d4577b 0%, #8B4789 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(212, 87, 123, 0.3);
+}
+
+.form-page button:hover {
+  background: linear-gradient(90deg, #8B4789 0%, #d4577b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 87, 123, 0.4);
+}
+
+/* =========================
+   INFO SECTIONS / FOOTER
+   ========================= */
+.info-sections {
+  max-width: 980px;
+  margin: 24px auto 48px auto;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240, 230, 245, 0.95) 100%);
+  border-radius: 12px;
+  border-left: 5px solid #8B4789;
+  box-shadow: 0 4px 12px rgba(139, 71, 137, 0.08);
+  color: #222;
+}
+
+.info-sections .info-section {
+  padding: 8px 6px;
+}
+
+.info-sections h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #8B4789;
+  font-weight: bold;
+}
+
+.info-sections p, .info-sections li {
+  margin: 6px 0;
+  line-height: 1.45;
+  color: #333;
+}
+
+.info-sections hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(139, 71, 137, 0.1), rgba(212, 87, 123, 0.3), rgba(139, 71, 137, 0.1));
+  margin: 12px 0;
+}
+
+.info-sections a { 
+  color: #d4577b; 
+  text-decoration: none; 
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.info-sections a:hover { 
+  color: #8B4789;
+  text-decoration: underline;
+}
+
+/* =========================
+   Sección Quiénes somos
+   ========================= */
+.info-about {
+  margin: 24px 0 12px 0;
+}
+
+.info-about .contenedor { max-width: 980px; margin: 0 auto; padding: 18px 20px; }
+
+.info-about h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #3f3a73;
+  margin: 0 0 10px 0;
+}
+
+.info-about p { margin: 0; color: #222; line-height: 1.5; }
+
+/* ===== FORZAR FORMULARIO VIOLETA ===== */
+
+/* Caja del formulario */
+.form-page .contenedor {
+  background-color: #d6ccff !important;
+}
+
+/* Eliminar fondo blanco interno del form */
+.form-page form {
+  background: transparent !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+/* =========================
+   CHAT (usar mismo fondo que formulario)
+   ========================= */
+.chat-page {
+  min-height: 100vh;
+  background-color: #d6ccff; /* mismo fondo violeta */
+  font-family: Arial, sans-serif;
+}
+
+.chat-page .contenedor {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #d6ccff;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+
+
+

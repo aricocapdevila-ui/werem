@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Servicios - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <h1>Servicios</h1>
+    <p>Aquí describimos los servicios que ofrecemos para apoyar a las mujeres en situación de violencia.</p>
+    
+    <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px;">
+      <p style="margin: 0;"><strong>ℹ️ Información:</strong> Para acceder a los servicios disponibles según tu plan, ve a <a href="mi-plan.html" style="color: #c84a70; font-weight: bold;">Mi Plan</a>.</p>
+    </div>
+
+    <!-- NUESTROS SERVICIOS EN ACORDEÓN -->
+    <div class="accordion" style="margin-bottom: 30px;">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ 🛠️ Nuestros Servicios - Explora Todas las Opciones</button>
+      <div class="accordion-content">
+    <div class="servicios-grid" style="margin-top: 20px;">
+      <div class="servicio-tarjeta servicio-tarjeta-1">
+        <div class="servicio-icono">💬</div>
+        <h2>Chat de Apoyo 24h</h2>
+        <p>Accede a un chat privado y seguro para recibir apoyo emocional y asesoramiento en cualquier momento.</p>
+      </div>
+
+      <div class="servicio-tarjeta servicio-tarjeta-2">
+        <div class="servicio-icono">⚖️</div>
+        <h2>Asesoramiento Jurídico</h2>
+        <p>Recibe orientación legal gratuita y confidencial de nuestros expertos.</p>
+      </div>
+
+      <div class="servicio-tarjeta servicio-tarjeta-3">
+        <div class="servicio-icono">🧠</div>
+        <h2>Apoyo Psicológico</h2>
+        <p>Sesiones individuales y grupales para gestionar el trauma y recuperar el bienestar.</p>
+      </div>
+
+      <div class="servicio-tarjeta servicio-tarjeta-1">
+        <div class="servicio-icono">🤝</div>
+        <h2>Mentorías y redes de apoyo</h2>
+        <p>Acompañamiento entre pares y mentorías guiadas para compartir experiencias y construir red segura.</p>
+      </div>
+
+      <div class="servicio-tarjeta servicio-tarjeta-2">
+        <div class="servicio-icono">📱</div>
+        <h2>Taller virtual</h2>
+        <p>Sesiones en línea con profesionales para autocuidado, seguridad digital y recursos legales. Únete sin ser visto/a.</p>
+      </div>
+
+      <div class="servicio-tarjeta servicio-tarjeta-3">
+        <div class="servicio-icono">💬</div>
+        <h2>Foro seguro</h2>
+        <p>Espacio seguro para compartir experiencias, preguntas y recursos con otras mujeres.</p>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <p><a href="index.html">Volver al inicio</a></p>
+  </div>
+
+  <style>
+    .plan-badge {
+      background: #ffc107;
+      color: #333;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-top: 8px;
+      text-align: center;
+      cursor: pointer;
+    }
+    
+    .plan-badge:hover {
+      background: #ffb300;
+    }
+  </style>
+
+  <script>
+  function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("oculto");
+  }
+
+  // Página informativa - el acceso a servicios se realiza desde Mi Plan
+
+  function toggleAccordion(btn) {
+    const content = btn.nextElementSibling;
+    if(content.style.display === "block") {
+      content.style.display = "none";
+      btn.textContent = btn.textContent.replace("−", "+");
+    } else {
+      content.style.display = "block";
+      btn.textContent = btn.textContent.replace("+", "−");
+    }
+  }
+
+  function accederSesion(btn) {
+    const transmision = btn.nextElementSibling;
+    transmision.style.display = 'block';
+    btn.disabled = true;
+    btn.textContent = 'Conectado a la sesión';
+  }
+
+  function toggleMes(btn) {
+    const diasGrid = btn.nextElementSibling;
+    if(diasGrid.style.display === "none" || diasGrid.style.display === "") {
+      diasGrid.style.display = "grid";
+      btn.innerHTML = btn.innerHTML.replace("2026", "2026 ▲");
+    } else {
+      diasGrid.style.display = "none";
+      btn.innerHTML = btn.innerHTML.replace("▲", "▼").replace("2026 ▼", "2026");
+    }
+  }
+
+  function enviarCuestionario(event) {
+    event.preventDefault();
+    const form = event.target;
+    const container = form.closest('.cuestionario-container');
+    const formDiv = container.querySelector('.cuestionario-form');
+    const graciasDiv = container.querySelector('.respuesta-gracias');
+
+    formDiv.style.display = 'none';
+    graciasDiv.style.display = 'block';
+
+    const formData = new FormData(form);
+    localStorage.setItem('foro_' + Date.now(), JSON.stringify(Object.fromEntries(formData)));
+  }
+</script>
+
+<!-- SECCIONES INFORMATIVAS AL FINAL (pie de página) -->
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Taller Virtual - Sesiones en Línea</button>
+      <div class="accordion-content">
+        <div class="taller-opciones">
+          <div class="taller-opcion">
+            <h4>Acceder a la sesión en vivo</h4>
+            <p>Visualiza la sesión con los profesionales. Solo ellos serán visibles.</p>
+            <button type="button" class="btn-enviar" onclick="accederSesion(this)">Acceder a la sesión</button>
+            <div class="transmision-profesionales" style="display:none; margin-top: 15px;">
+              <div class="video-profesional">
+                <p style="text-align: center; color: #666;">📹 Transmisión en vivo de los profesionales</p>
+                <iframe style="width: 100%; height: 400px; border-radius: 6px; border: 1px solid #ddd;" src="about:blank" title="Sesión en vivo"></iframe>
+              </div>
+              <p style="margin-top: 10px; color: #555; font-size: 14px;">✓ Solo los profesionales son visibles. Tu privacidad está protegida.</p>
+            </div>
+          </div>
+
+          <div class="taller-opcion">
+            <h4>Calendario de talleres 2026</h4>
+            <p>Consulta las fechas mes a mes del año 2026 para unirte a las sesiones:</p>
+            <div class="cal-2026">
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Enero 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                  <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+                  <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+                  <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+                  <span>28</span><span>29</span><span>30</span><span>31</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Febrero 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span>1</span>
+                  <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                  <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                  <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+                  <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Marzo 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span>1</span>
+                  <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                  <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                  <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+                  <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+                  <span>30</span><span>31</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Abril 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span class="vacio"></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                  <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+                  <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+                  <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
+                  <span>27</span><span>28</span><span>29</span><span>30</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Mayo 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span>1</span><span>2</span><span>3</span>
+                  <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                  <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
+                  <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
+                  <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Junio 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                  <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                  <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                  <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                  <span>29</span><span>30</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Julio 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span>1</span><span>2</span><span>3</span><span>4</span>
+                  <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                  <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+                  <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                  <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Agosto 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span>1</span>
+                  <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                  <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                  <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+                  <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+                  <span>30</span><span>31</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Septiembre 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                  <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+                  <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+                  <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+                  <span>28</span><span>29</span><span>30</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Octubre 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span>1</span><span>2</span><span>3</span><span>4</span>
+                  <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                  <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+                  <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                  <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Noviembre 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span class="vacio"></span><span>1</span>
+                  <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                  <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                  <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+                  <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+                  <span>30</span>
+                </div>
+              </div>
+
+              <div class="mes-calendario">
+                <button type="button" class="mes-btn" onclick="toggleMes(this)">Diciembre 2026</button>
+                <div class="dias-grid" style="display:none;">
+                  <span class="dia-semana">L</span><span class="dia-semana">M</span><span class="dia-semana">X</span><span class="dia-semana">J</span><span class="dia-semana">V</span><span class="dia-semana">S</span><span class="dia-semana">D</span>
+                  <span class="vacio"></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                  <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+                  <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+                  <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+                  <span>28</span><span>29</span><span>30</span><span>31</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MATERIALES DEL TALLER -->
+        <div class="materiales-taller">
+          <h3 style="text-align: center; color: #8B4789; margin-top: 40px; margin-bottom: 25px;">📚 Materiales y Recursos</h3>
+          
+          <div class="materiales-grid">
+            <!-- GUÍAS -->
+            <div class="material-categoria">
+              <div class="material-header">
+                <span class="material-icono">📖</span>
+                <h4>Guías</h4>
+              </div>
+              <ul class="material-lista">
+                <li><a href="#" download>Guía de Seguridad Digital</a></li>
+                <li><a href="#" download>Manual de Derechos de las Mujeres</a></li>
+                <li><a href="#" download>Guía de Autocuidado y Bienestar</a></li>
+                <li><a href="#" download>Protocolo de Actuación en Emergencias</a></li>
+                <li><a href="#" download>Guía de Recursos Locales en Alicante</a></li>
+              </ul>
+            </div>
+
+            <!-- INFOGRAFÍAS -->
+            <div class="material-categoria">
+              <div class="material-header">
+                <span class="material-icono">🖼️</span>
+                <h4>Infografías</h4>
+              </div>
+              <ul class="material-lista">
+                <li><a href="#" download>Señales de Violencia de Género</a></li>
+                <li><a href="#" download>Tipos de Violencia (Rueda de la Violencia)</a></li>
+                <li><a href="#" download>Pasos para Denunciar</a></li>
+                <li><a href="#" download>Red de Apoyo y Contactos</a></li>
+                <li><a href="#" download>Ciclo de la Violencia</a></li>
+              </ul>
+            </div>
+
+            <!-- VÍDEOS -->
+            <div class="material-categoria">
+              <div class="material-header">
+                <span class="material-icono">🎥</span>
+                <h4>Vídeos</h4>
+              </div>
+              <ul class="material-lista">
+                <li><a href="#">Testimonios de Superación (15 min)</a></li>
+                <li><a href="#">Técnicas de Relajación y Mindfulness</a></li>
+                <li><a href="#">Seguridad Digital: Protege tus Datos</a></li>
+                <li><a href="#">Construyendo Redes de Apoyo</a></li>
+                <li><a href="#">Derechos Legales: Conoce tus Opciones</a></li>
+              </ul>
+            </div>
+
+            <!-- MATERIALES DE TALLERES -->
+            <div class="material-categoria">
+              <div class="material-header">
+                <span class="material-icono">📝</span>
+                <h4>Materiales de Talleres</h4>
+              </div>
+              <ul class="material-lista">
+                <li><a href="#" download>Presentación: Empoderamiento Personal</a></li>
+                <li><a href="#" download>Fichas de Trabajo: Autoestima</a></li>
+                <li><a href="#" download>Ejercicios de Gestión Emocional</a></li>
+                <li><a href="#" download>Plan de Seguridad Personal</a></li>
+                <li><a href="#" download>Recursos de Apoyo Psicológico</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="materiales-nota">
+            <p><strong>Nota:</strong> Todos los materiales están diseñados por profesionales especializados en violencia de género. Puedes descargarlos y consultarlos en cualquier momento. Si necesitas ayuda para acceder a algún recurso, contacta con nuestro equipo.</p>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="accordion" id="accordion-foro" name="foro">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Foro seguro</button>
+      <div class="accordion-content">
+        <div class="cuestionario-container">
+          <div class="cuestionario-form">
+            <h3>Participa en el foro</h3>
+            <form class="form-cuestionario" onsubmit="enviarMensajeForo(event)">
+              <p><strong>Comparte tu mensaje:</strong><br>
+              <textarea name="mensaje_foro" placeholder="Escribe con respeto y mantén tu anonimato" rows="4" required></textarea></p>
+              <button type="submit" class="btn-enviar">Publicar en el foro</button>
+            </form>
+          </div>
+          <div class="respuesta-gracias" style="display:none;">
+            <p>Gracias por tu compromiso y colaboración con REM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Mentorías y redes de apoyo</button>
+      <div class="accordion-content">
+        <p>Acompañamiento entre pares y mentorías guiadas para compartir experiencias, estrategias de afrontamiento y construir red de apoyo segura.</p>
+      </div>
+      </div>
+
+      <div class="accordion" id="accordion-evaluacion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Evaluación y Seguimiento</button>
+      <div class="accordion-content">
+        <p><strong>Fase de Evaluación Inicial:</strong> Realización de una valoración integral de la situación de violencia, necesidades y recursos disponibles para crear un plan personalizado.</p>
+        <p><strong>Seguimiento Continuo:</strong> Monitoreo periódico del progreso, ajuste de medidas y actualización de estrategias según la evolución de cada caso.</p>
+      </div>
+      </div>
+
+      <div class="accordion" id="accordion-mentorias">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Mentorías y Redes de Apoyo</button>
+      <div class="accordion-content">
+        <p>Acompañamiento entre pares y mentorías guiadas para compartir experiencias, estrategias de afrontamiento y construir red de apoyo segura.</p>
+      </div>
+      </div>
+
+      <div class="accordion" id="accordion-acompanamiento" name="acompanamiento">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Acompañamiento Personalizado</button>
+      <div class="accordion-content">
+        <h3>Servicio Exclusivo Plan Premium</h3>
+        <p>El acompañamiento personalizado es un servicio integral que te ofrece:</p>
+        <ul>
+          <li><strong>Coordinador/a personal:</strong> Un profesional dedicado que gestiona tu caso de forma individualizada</li>
+          <li><strong>Plan de recuperación personalizado:</strong> Diseñado específicamente para tus necesidades y objetivos</li>
+          <li><strong>Seguimiento continuo:</strong> Contacto regular para evaluar progresos y ajustar estrategias</li>
+          <li><strong>Coordinación de servicios:</strong> Tu coordinador/a conecta todos los servicios (psicológico, jurídico, talleres) para una atención integral</li>
+          <li><strong>Disponibilidad prioritaria:</strong> Acceso preferente a todos los recursos de la plataforma</li>
+          <li><strong>Sesiones de planificación:</strong> Reuniones periódicas para establecer metas y evaluar avances</li>
+        </ul>
+        <p style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-left: 4px solid #c84a70; border-radius: 4px;">
+          <strong>📞 Para acceder a este servicio:</strong> Contacta con nuestro equipo en <a href="mailto:premium@werem.org">premium@werem.org</a> o llama al +34 900 000 000. Te asignaremos un coordinador/a en menos de 24 horas.
+        </p>
+      </div>
+      </div>
+    </div>
+
+    <p><a href="index.html">Volver al inicio</a></p>
+  </div>
+
+  <script>
+  function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("oculto");
+  }
+
+  // Abrir acordeón automáticamente si hay un hash en la URL
+  document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash;
+    if (hash === '#foro' || hash === '#acompanamiento') {
+      const acordeonId = hash === '#foro' ? 'accordion-foro' : 'accordion-acompanamiento';
+      const acordeon = document.getElementById(acordeonId);
+      
+      if (acordeon) {
+        const button = acordeon.querySelector('.accordion-btn');
+        const content = acordeon.querySelector('.accordion-content');
+        
+        if (button && content) {
+          content.style.display = 'block';
+          button.textContent = button.textContent.replace('+ ', '- ');
+          
+          // Scroll al acordeón
+          setTimeout(function() {
+            acordeon.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+  });
+
+  function abrirServicio(event, servicio) {
+    event.preventDefault();
+    
+    // Servicios que redirigen a páginas externas
+    if (servicio === 'chat') {
+      window.location.href = 'chat.html';
+      return;
+    }
+    
+    if (servicio === 'juridico') {
+      window.location.href = 'juridico.html';
+      return;
+    }
+    
+    // Mapeo de servicios a IDs de acordeones
+    const acordeonMap = {
+      'psicologico': 'accordion-cuestionario-inicial',
+      'mentorias': 'accordion-mentorias',
+      'taller': 'accordion-taller',
+      'foro': 'accordion-foro'
+    };
+    
+    const acordeonId = acordeonMap[servicio];
+    const acordeon = document.getElementById(acordeonId);
+    
+    if (acordeon) {
+      // Cierra todos los acordeones
+      document.querySelectorAll('.accordion-content').forEach(function(item) {
+        item.style.display = 'none';
+      });
+      document.querySelectorAll('.accordion-btn').forEach(function(btn) {
+        btn.textContent = btn.textContent.replace('- ', '+ ');
+      });
+      
+      // Abre el acordeón seleccionado
+      const button = acordeon.querySelector('.accordion-btn');
+      const content = acordeon.querySelector('.accordion-content');
+      if (button && content) {
+        content.style.display = 'block';
+        button.textContent = button.textContent.replace('+ ', '- ');
+      }
+      
+      // Scroll al acordeón
+      setTimeout(function() {
+        acordeon.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }
+
+  function toggleAccordion(button) {
+    const content = button.nextElementSibling;
+    const isOpen = content.style.display === 'block';
+    
+    // Cerrar todos los acordeones
+    document.querySelectorAll('.accordion-content').forEach(function(item) {
+      item.style.display = 'none';
+    });
+    document.querySelectorAll('.accordion-btn').forEach(function(btn) {
+      btn.textContent = btn.textContent.replace('- ', '+ ');
+    });
+    
+    // Abrir el acordeón clickeado
+    if (!isOpen) {
+      content.style.display = 'block';
+      button.textContent = button.textContent.replace('+ ', '- ');
+    }
+  }
+
+  function accederSesion(btn) {
+    const transmision = btn.closest('.taller-opcion').querySelector('.transmision-profesionales');
+    const isOpen = transmision.style.display === 'block';
+
+    if (isOpen) {
+      transmision.style.display = 'none';
+      btn.textContent = 'Acceder a la sesión';
+    } else {
+      transmision.style.display = 'block';
+      btn.textContent = 'Cerrar sesión';
+    }
+  }
+
+  function toggleMes(btn) {
+    const diasGrid = btn.nextElementSibling;
+    const isOpen = diasGrid.style.display === 'grid';
+
+    if (isOpen) {
+      diasGrid.style.display = 'none';
+      btn.classList.remove('expanded');
+      btn.classList.add('collapsed');
+    } else {
+      diasGrid.style.display = 'grid';
+      btn.classList.remove('collapsed');
+      btn.classList.add('expanded');
+    }
+  }
+
+  function enviarCuestionario(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const container = form.closest('.cuestionario-container');
+    const formDiv = container.querySelector('.cuestionario-form');
+    const graciasDiv = container.querySelector('.respuesta-gracias');
+    
+    // Ocultar formulario y mostrar mensaje
+    formDiv.style.display = 'none';
+    graciasDiv.style.display = 'block';
+    
+    // Guardar datos en localStorage (opcional, para persistencia)
+    const formData = new FormData(form);
+    const cuestionarioId = form.parentElement.parentElement.querySelector('.accordion-btn').textContent;
+    localStorage.setItem('cuestionario_' + Date.now(), JSON.stringify(Object.fromEntries(formData)));
+  }
+
+  function enviarMensajeForo(event) {
+    event.preventDefault();
+    const form = event.target;
+    const container = form.closest('.cuestionario-container');
+    const formDiv = container.querySelector('.cuestionario-form');
+    const graciasDiv = container.querySelector('.respuesta-gracias');
+
+    formDiv.style.display = 'none';
+    graciasDiv.style.display = 'block';
+
+    const formData = new FormData(form);
+    localStorage.setItem('foro_' + Date.now(), JSON.stringify(Object.fromEntries(formData)));
+  }
+</script>
+
+<!-- SECCIONES INFORMATIVAS AL FINAL (pie de página) -->
+<footer class="info-sections">
+  <div class="info-section">
+    <h3>Contacto</h3>
+    <p>Teléfono: +34 600 000 000</p>
+    <p>Correo: contacto@werem.org</p>
+    <p>Instagram: <a href="https://www.instagram.com/tu_cuenta" target="_blank" rel="noopener">@tu_cuenta</a></p>
+  </div>
+
+  <hr />
+
+  <div class="info-section">
+    <h3>Marco legal</h3>
+    <p>Esta web se apoya en la normativa vigente sobre atención y protección a víctimas. Consulta el marco legal completo en <a href="legal.html">la página de marco legal</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

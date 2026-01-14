@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+
+    <p>Este formulario está destinado exclusivamente a mujeres residentes en Alicante que se encuentren en situación de violencia de género.</p>
+
+    <form id="formulario" class="oculto">
+
+      <label>Nombre y Apellidos</label>
+      <input type="text" required>
+
+      <label>Edad (mínimo 18 años)</label>
+      <input type="number" min="18" required>
+
+      <label>Estado civil</label>
+      <select required>
+        <option value="">Seleccionar</option>
+        <option>Soltera</option>
+        <option>Casada</option>
+        <option>Divorciada</option>
+        <option>Separada</option>
+        <option>Viuda</option>
+      </select>
+
+      <label>Ciudad</label>
+      <select required>
+        <option value="">Seleccionar</option>
+        <option>Alicante</option>
+      </select>
+
+      <label>Número de hijos</label>
+      <input type="number" min="0">
+
+      <!-- GÉNERO + FOTOS -->
+      <label>Género</label>
+      <select required>
+        <option value="">Seleccionar</option>
+        <option>Mujer</option>
+        <option>Hombre</option>
+        <option>Otro</option>
+      </select>
+
+      <label>Foto de frente</label>
+      <input type="file" accept="image/*" required>
+
+      <label>Foto de perfil (lado)</label>
+      <input type="file" accept="image/*" required>
+
+      <!-- DNI / NIE -->
+      <label>Tipo de documento</label>
+      <select id="tipoDocumento" required>
+        <option value="">Seleccionar</option>
+        <option value="dni">DNI</option>
+        <option value="nie">NIE</option>
+      </select>
+
+      <label>Número de documento</label>
+      <input
+        type="text"
+        id="numeroDocumento"
+        placeholder="Ej: 12345678Z o X1234567L"
+        required
+      >
+
+      <label>Padrón municipal (PDF)</label>
+      <input type="file" accept=".pdf" required>
+
+      <label>Nivel de ingresos</label>
+      <select>
+        <option>Sin ingresos</option>
+        <option>Menos de 500 €</option>
+        <option>500 € – 1.000 €</option>
+        <option>1.000 € – 1.500 €</option>
+        <option>Más de 1.500 €</option>
+      </select>
+
+      <label>Nivel educativo</label>
+      <select>
+        <option>Sin estudios</option>
+        <option>Primaria</option>
+        <option>Secundaria</option>
+        <option>Formación profesional</option>
+        <option>Universitarios</option>
+      </select>
+
+      <label>Situación de violencia</label>
+      <select id="situacionViolencia" required>
+        <option value="">Seleccionar</option>
+        <option>Sí</option>
+        <option>No</option>
+      </select>
+
+      <!-- DENUNCIA -->
+      <label>¿Existe denuncia?</label>
+      <select required>
+        <option value="">Seleccionar</option>
+        <option>Sí</option>
+        <option>No</option>
+      </select>
+
+      <label>Adjuntar denuncia (PDF)</label>
+      <input type="file" accept="application/pdf" multiple>
+
+      <label>Nombre de usuario</label>
+      <input type="text" id="username" required>
+
+      <label>Contraseña</label>
+      <input type="password" id="password" required>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+  </div>
+
+  <!-- SCRIPT DEL DELAY + VALIDACIÓN Y AUTORIZACIÓN -->
+  <script>
+    (function(){
+      var form = document.getElementById('formulario');
+      // mostrar el formulario tras un delay
+      setTimeout(function () {
+        form.classList.remove('oculto');
+        form.classList.add('visible');
+      <script>
+        (function(){
+          var form = document.getElementById('formulario');
+          // mostrar el formulario tras un delay
+          setTimeout(function () {
+            form.classList.remove('oculto');
+            form.classList.add('visible');
+          }, 3000);
+
+          function validarDocumento(tipo, valor) {
+            const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+            valor = valor.toUpperCase().trim();
+
+            if (tipo === "dni") {
+              if (!/^\d{8}[A-Z]$/.test(valor)) return false;
+              const numero = valor.substring(0, 8);
+              const letra = valor.charAt(8);
+              return letras[numero % 23] === letra;
+            }
+
+            if (tipo === "nie") {
+              if (!/^[XYZ]\d{7}[A-Z]$/.test(valor)) return false;
+
+              let numero = valor
+                .replace("X", "0")
+                .replace("Y", "1")
+                .replace("Z", "2");
+
+              const letra = numero.charAt(8);
+              const num = numero.substring(0, 8);
+
+              return letras[num % 23] === letra;
+            }
+
+            return false;
+          }
+
+          async function hashPassword(pwd) {
+            const enc = new TextEncoder();
+            const data = enc.encode(pwd);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+          }
+
+          form.addEventListener('submit', async function(e){
+            e.preventDefault();
+            // validación nativa
+            if (!form.checkValidity()) {
+              form.reportValidity();
+              return;
+            }
+
+            var tipo = document.getElementById('tipoDocumento').value;
+            var numero = document.getElementById('numeroDocumento').value;
+
+            if (!validarDocumento(tipo, numero)) {
+              alert('El DNI o NIE introducido no es inválido.');
+              return;
+            }
+
+            // Opcional: solo permitir acceso al chat si 'Situación de violencia' = 'Sí'
+            var situ = document.getElementById('situacionViolencia').value;
+            if (situ !== 'Sí') {
+              alert('Solo las personas en situación de violencia pueden acceder al chat.');
+              return;
+            }
+
+            // Crear cuenta de usuario (usuario + contraseña)
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value;
+            if (!username || !password) {
+              alert('Introduce usuario y contraseña.');
+              return;
+            }
+
+            var users = JSON.parse(localStorage.getItem('werem_users') || '{}');
+            if (users[username]) {
+              alert('El nombre de usuario ya existe. Elige otro.');
+              return;
+            }
+
+            var passHash = await hashPassword(password);
+            users[username] = { hash: passHash, created: Date.now(), situacion: situ };
+            localStorage.setItem('werem_users', JSON.stringify(users));
+
+            // Incrementar el contador de mujeres registradas
+            var contadorActual = parseInt(localStorage.getItem('werem_mujeres_registradas') || 0);
+            contadorActual++;
+            localStorage.setItem('werem_mujeres_registradas', contadorActual);
+
+            // Verificar si se alcanzó el límite
+            if (contadorActual >= 50) {
+              alert('¡Se ha alcanzado el límite de 50 mujeres registradas! El formulario no estará disponible temporalmente.');
+            } else {
+              alert('Cuenta creada. Ahora inicia sesión en el chat con tu usuario y contraseña.');
+            }
+            window.location.href = 'chat.html';
+          });
+        })();
+
+  function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("oculto");
+<footer class="info-sections">
+  <div class="info-section">
+    <h3>Contacto</h3>
+    <p>Teléfono: +34 600 000 000</p>
+    <p>Correo: contacto@werem.org</p>
+    <p>Instagram: <a href="https://www.instagram.com/tu_cuenta" target="_blank" rel="noopener">@tu_cuenta</a></p>
+  </div>
+
+  <hr />
+
+  <div class="info-section">
+    <h3>Marco legal</h3>
+    <p>Esta web se apoya en la normativa vigente sobre atención y protección a víctimas. Consulta el marco legal completo en <a href="legal.html">la página de marco legal</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

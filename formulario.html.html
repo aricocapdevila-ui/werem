@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body class="form-page">
+
+  <div class="contenedor">
+
+    <!-- INTRO: LOGO + ESLOGAN -->
+  <img src="img/logo-rem.png" alt="Logo REM" class="logo-formulario">
+
+  <p class="lema-formulario">Levanta tu voz, no tu miedo.</p>
+
+    <!-- FORMULARIO (oculto al inicio) -->
+   <form id="formulario">
+
+
+      <label>Nombre y Apellidos</label>
+      <input type="text" required>
+
+      <label>Edad</label>
+      <input type="number" min="0" required>
+
+      <label>Estado civil</label>
+      <select required>
+        <option value="">Seleccionar</option>
+        <option>Soltera</option>
+        <option>Casada</option>
+        <option>Divorciada</option>
+        <option>Separada</option>
+        <option>Viuda</option>
+      </select>
+
+      <label>Número de hijos</label>
+      <input type="number" min="0">
+
+      <!-- GÉNERO + FOTOS -->
+      <label>Género</label>
+      <select required>
+        <option value="">Seleccionar</option>
+        <option>Mujer</option>
+        <option>Hombre</option>
+        <option>Otro</option>
+      </select>
+
+      <label>Foto de frente</label>
+      <input type="file" accept="image/*" required>
+
+      <label>Foto de perfil (lado)</label>
+      <input type="file" accept="image/*" required>
+
+      <!-- DNI / NIE -->
+      <label>Tipo de documento</label>
+      <select id="tipoDocumento" required>
+        <option value="">Seleccionar</option>
+        <option value="dni">DNI</option>
+        <option value="nie">NIE</option>
+      </select>
+
+      <label>Número de documento</label>
+      <input
+        type="text"
+        id="numeroDocumento"
+        placeholder="Ej: 12345678Z o X1234567L"
+        required
+      >
+
+      <label>Localidad</label>
+      <input type="text" required>
+
+      <label>Nivel de ingresos</label>
+      <select>
+        <option>Sin ingresos</option>
+        <option>Menos de 500 €</option>
+        <option>500 € – 1.000 €</option>
+        <option>1.000 € – 1.500 €</option>
+        <option>Más de 1.500 €</option>
+      </select>
+
+      <label>Nivel educativo</label>
+      <select>
+        <option>Sin estudios</option>
+        <option>Primaria</option>
+        <option>Secundaria</option>
+        <option>Formación profesional</option>
+        <option>Universitarios</option>
+      </select>
+
+      <label>Situación de violencia</label>
+      <select required>
+        <option value="">Seleccionar</option>
+        <option>Sí</option>
+        <option>No</option>
+      </select>
+
+      <!-- DENUNCIA -->
+      <label>¿Existe denuncia?</label>
+      <select required>
+        <option value="">Seleccionar</option>
+        <option>Sí</option>
+        <option>No</option>
+      </select>
+
+      <label>Adjuntar denuncia (PDF)</label>
+      <input type="file" accept="application/pdf" multiple>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+  </div>
+
+  <!-- SCRIPT DEL DELAY -->
+  <script>
+    setTimeout(function () {
+      document.getElementById("formulario").classList.remove("oculto");
+      document.getElementById("formulario").classList.add("visible");
+    }, 3000);
+  </script>
+
+  <!-- VALIDACIÓN DNI / NIE -->
+  <script>
+    function validarDocumento(tipo, valor) {
+      const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+      valor = valor.toUpperCase().trim();
+
+      if (tipo === "dni") {
+        if (!/^\d{8}[A-Z]$/.test(valor)) return false;
+        const numero = valor.substring(0, 8);
+        const letra = valor.charAt(8);
+        return letras[numero % 23] === letra;
+      }
+
+      if (tipo === "nie") {
+        if (!/^[XYZ]\d{7}[A-Z]$/.test(valor)) return false;
+
+        let numero = valor
+          .replace("X", "0")
+          .replace("Y", "1")
+          .replace("Z", "2");
+
+        const letra = numero.charAt(8);
+        const num = numero.substring(0, 8);
+
+        return letras[num % 23] === letra;
+      }
+
+      return false;
+    }
+
+    document.getElementById("formulario").addEventListener("submit", function (e) {
+      const tipo = document.getElementById("tipoDocumento").value;
+      const numero = document.getElementById("numeroDocumento").value;
+
+      if (!validarDocumento(tipo, numero)) {
+        e.preventDefault();
+        alert("El DNI o NIE introducido no es válido.");
+      }
+    });
+  </script>
+
+</body>
+</html>

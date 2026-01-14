@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Plan - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <h1>Mi Plan</h1>
+    <p>Aquí puedes ver tu plan actual y los servicios disponibles.</p>
+
+    <div id="plan-info" style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+      <h2>Plan Actual</h2>
+      <p id="plan-actual" style="font-size: 18px; font-weight: bold; color: #c84a70;">Cargando...</p>
+      <p id="plan-fecha" style="font-size: 12px; color: #999; margin-top: 10px;"></p>
+    </div>
+
+    <div id="sin-plan" style="display: none; background: #ffe0e6; padding: 20px; border-radius: 8px; border-left: 4px solid #c84a70; margin: 20px 0;">
+      <h3>No tienes plan seleccionado</h3>
+      <p>Para acceder a todos los servicios de WeRem, selecciona un plan:</p>
+      <a href="planes.html" style="display: inline-block; background: #c84a70; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin-top: 10px;">Ver Planes</a>
+    </div>
+
+    <h2>Servicios Disponibles</h2>
+    <div id="servicios-disponibles" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+      <!-- Se llenará dinámicamente -->
+    </div>
+
+    <h2>Cambiar Plan</h2>
+    <div style="background: #f0f0f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+      <p>¿Quieres cambiar tu plan o actualizar a uno superior?</p>
+      <a href="planes.html" class="btn-principal" style="display: inline-block; background: #4b3278; color: white; padding: 12px 20px; border-radius: 6px; text-decoration: none; margin-top: 10px;">Ver Todos los Planes</a>
+      <button onclick="limpiarPlan()" class="btn-secundario" style="display: inline-block; background: #e0e0e0; color: #333; padding: 12px 20px; border-radius: 6px; border: none; margin-left: 10px; margin-top: 10px; cursor: pointer;">Limpiar Plan Actual</button>
+    </div>
+
+    <p style="margin-top: 30px;"><a href="index.html">Volver al inicio</a></p>
+  </div>
+
+  <style>
+    .servicio-disponible {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .servicio-disponible:hover:not(.bloqueado) {
+      border-color: #c84a70;
+      box-shadow: 0 4px 12px rgba(200, 74, 112, 0.2);
+      transform: translateY(-2px);
+      cursor: pointer;
+    }
+    
+    .servicio-disponible.bloqueado {
+      opacity: 0.6;
+      background: #f5f5f5;
+      border-color: #ccc;
+    }
+    
+    .servicio-disponible h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+    
+    .servicio-disponible .icono {
+      font-size: 32px;
+      margin: 10px 0;
+    }
+    
+    .servicio-disponible p {
+      font-size: 12px;
+      color: #666;
+      margin: 0;
+    }
+    
+    .servicio-disponible .badge-bloqueado {
+      display: inline-block;
+      background: #ff9800;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .servicio-disponible.enlace {
+      cursor: pointer;
+    }
+
+    .servicio-disponible.enlace h3 {
+      color: #c84a70;
+      text-decoration: none;
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector(".menu").classList.toggle("oculto");
+    }
+
+    function limpiarPlan() {
+      if (confirm('¿Estás segura de que quieres limpiar tu plan actual?')) {
+        localStorage.removeItem('werem_plan');
+        localStorage.removeItem('werem_plan_fecha');
+        location.reload();
+      }
+    }
+
+    function mostrarInfoPlan() {
+      const plan = obtenerPlanActual();
+      const infoDiv = document.getElementById('plan-info');
+      const sinPlanDiv = document.getElementById('sin-plan');
+      const serviciosDiv = document.getElementById('servicios-disponibles');
+
+      // Solo mostrar servicios que estén disponibles según el plan
+      const todosLosServicios = {
+        formulario: { nombre: 'Formulario de Registro', icono: '📝', planes: ['basico', 'pro', 'premium'], enlace: 'formulario.html' },
+        guia: { nombre: 'Guía de Uso', icono: '📖', planes: ['basico', 'pro', 'premium'], enlace: 'guia.html' },
+        foro: { nombre: 'Foro Seguro', icono: '💬', planes: ['basico', 'pro', 'premium'], enlace: 'servicios.html#foro' },
+        chat: { nombre: 'Chat 24h', icono: '💬', planes: ['pro', 'premium'], enlace: 'chat.html' },
+        juridico: { nombre: 'Asesoramiento Jurídico', icono: '⚖️', planes: ['pro', 'premium'], enlace: 'juridico.html' },
+        psicologico: { nombre: 'Apoyo Psicológico', icono: '🧠', planes: ['pro', 'premium'], enlace: 'psicologico.html' },
+        mentorias: { nombre: 'Mentorías', icono: '🤝', planes: ['pro', 'premium'], enlace: 'mentorias.html' },
+        taller: { nombre: 'Taller Virtual', icono: '📱', planes: ['pro', 'premium'], enlace: 'taller.html' },
+        acompanamiento: { nombre: 'Acompañamiento Personalizado', icono: '🌟', planes: ['premium'], enlace: 'servicios.html#acompanamiento' }
+      };
+
+      if (!plan) {
+        infoDiv.style.display = 'none';
+        sinPlanDiv.style.display = 'block';
+        return;
+      }
+
+      // Mostrar plan actual
+      infoDiv.style.display = 'block';
+      sinPlanDiv.style.display = 'none';
+
+      const planTexto = plan.charAt(0).toUpperCase() + plan.slice(1);
+      document.getElementById('plan-actual').textContent = `Plan ${planTexto}`;
+
+      const fecha = localStorage.getItem('werem_plan_fecha');
+      if (fecha) {
+        const fechaObj = new Date(fecha);
+        const fechaFormato = fechaObj.toLocaleDateString('es-ES', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        document.getElementById('plan-fecha').textContent = `Seleccionado el: ${fechaFormato}`;
+      }
+
+      // Mostrar servicios disponibles
+      serviciosDiv.innerHTML = '';
+      for (const [servicio, datos] of Object.entries(todosLosServicios)) {
+        const tieneAcceso = datos.planes.includes(plan);
+        
+        if (tieneAcceso && datos.enlace) {
+          // Crear tarjeta clickeable con enlace
+          const html = `
+            <div class="servicio-disponible enlace" onclick="window.location.href='${datos.enlace}'">
+              <div class="icono">${datos.icono}</div>
+              <h3>${datos.nombre}</h3>
+              <p>✓ Disponible</p>
+              <p style="font-size: 11px; color: #999; margin-top: 8px;">Haz clic para acceder →</p>
+            </div>
+          `;
+          serviciosDiv.innerHTML += html;
+        } else if (tieneAcceso && !datos.enlace) {
+          // Servicio disponible pero sin enlace
+          const html = `
+            <div class="servicio-disponible enlace" onclick="alert('Este servicio se abrirá en Servicios')">
+              <div class="icono">${datos.icono}</div>
+              <h3>${datos.nombre}</h3>
+              <p>✓ Disponible</p>
+              <p style="font-size: 11px; color: #999; margin-top: 8px;">Ver en Servicios →</p>
+            </div>
+          `;
+          serviciosDiv.innerHTML += html;
+        } else if (!tieneAcceso) {
+          // Servicio no disponible
+          const html = `
+            <div class="servicio-disponible bloqueado">
+              <div class="icono">${datos.icono}</div>
+              <h3>${datos.nombre}</h3>
+              <p>✗ No disponible en este plan</p>
+              <div class="badge-bloqueado">Requiere plan superior</div>
+            </div>
+          `;
+          serviciosDiv.innerHTML += html;
+        }
+      }
+    }
+
+    // Mostrar información al cargar
+    document.addEventListener('DOMContentLoaded', mostrarInfoPlan);
+  </script>
+
+</body>
+</html>

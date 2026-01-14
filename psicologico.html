@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Apoyo Psicológico - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <h1>Apoyo Psicológico</h1>
+    <p>Sesiones individuales y grupales con profesionales especializados en trauma y violencia de género.</p>
+
+    <script>
+      // Verificar acceso al apoyo psicológico cuando carga la página
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!verificarAcceso('psicologico', 'Apoyo Psicológico')) {
+          // Si no tiene acceso, la función mostrarAccesoDenegado renderizará la página
+          return;
+        }
+      });
+    </script>
+
+    <!-- CONTENIDO DEL SERVICIO -->
+    <div class="accordion" style="margin-top: 30px;">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Sesiones Individuales</button>
+      <div class="accordion-content">
+        <h3>Apoyo personalizado uno a uno</h3>
+        <p>Trabaja directamente con un psicólogo especializado en violencia de género. Las sesiones están diseñadas para:</p>
+        <ul>
+          <li>Procesar el trauma y las emociones</li>
+          <li>Desarrollar estrategias de afrontamiento</li>
+          <li>Fortalecer la autoestima y confianza</li>
+          <li>Planificar tu recuperación personal</li>
+        </ul>
+        <p><strong>Disponibilidad según plan:</strong></p>
+        <ul>
+          <li><strong>Plan Pro:</strong> Hasta 4 sesiones por mes</li>
+          <li><strong>Plan Premium:</strong> 1 sesión por semana (ilimitadas)</li>
+        </ul>
+        <p><strong>Horarios:</strong> Lunes a viernes, 9:00 - 19:00 | Sábados 10:00 - 14:00</p>
+        <button onclick="solicitarSesion()" style="background: #c84a70; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px;">Solicitar Sesión</button>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Sesiones Grupales</button>
+      <div class="accordion-content">
+        <h3>Apoyo en comunidad</h3>
+        <p>Participa en sesiones grupales con otras mujeres en situaciones similares. Beneficios:</p>
+        <ul>
+          <li>Sentirse comprendida y apoyada</li>
+          <li>Compartir experiencias y estrategias</li>
+          <li>Reducir el aislamiento</li>
+          <li>Crear red de apoyo mutuo</li>
+        </ul>
+        <p><strong>Grupos disponibles:</strong></p>
+        <ul>
+          <li>Grupo de Recuperación Temprana (nuevas usuarias)</li>
+          <li>Grupo de Empoderamiento Avanzado</li>
+          <li>Grupo de Padres/Madres en Recuperación</li>
+          <li>Grupo de Resiliencia y Vida Nueva</li>
+        </ul>
+        <p><strong>Frecuencia:</strong> 2 sesiones por semana (miércoles y sábado)</p>
+        <button onclick="unirseGrupo()" style="background: #4b3278; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px;">Unirse a un Grupo</button>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Recursos y Técnicas</button>
+      <div class="accordion-content">
+        <h3>Herramientas para el autocuidado</h3>
+        <p>Accede a recursos para trabajar en tu bienestar entre sesiones:</p>
+        <ul>
+          <li>Guías de técnicas de relajación y meditación</li>
+          <li>Ejercicios de respiración y mindfulness</li>
+          <li>Diarios de reflexión y seguimiento emocional</li>
+          <li>Biblioteca de audios y vídeos de apoyo</li>
+          <li>Libros recomendados sobre recuperación</li>
+        </ul>
+        <a href="#" style="display: inline-block; background: #c84a70; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin-top: 15px;">Acceder a Recursos</a>
+      </div>
+    </div>
+
+    <!-- CUESTIONARIOS DE EVALUACIÓN -->
+    <h2 style="text-align: center; margin-top: 40px; color: #8B4789;">Cuestionarios de Evaluación Psicológica</h2>
+    <p style="text-align: center; margin-bottom: 30px;">Estos cuestionarios nos ayudan a personalizar tu tratamiento y hacer seguimiento de tu progreso.</p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Cuestionario Inicial</button>
+      <div class="accordion-content">
+        <div class="cuestionario-container">
+          <div class="cuestionario-form">
+            <h3>Cuestionario Inicial</h3>
+            <form class="form-cuestionario" onsubmit="enviarCuestionario(event)">
+              
+              <h4>1. Datos personales</h4>
+              <p><label><strong>Edad (mínimo 18 años):</strong> <input type="number" name="edad" placeholder="Edad" min="18" required></label></p>
+              <p><label><strong>Localidad:</strong> <select name="localidad" required>
+                <option value="">Seleccionar</option>
+                <option value="alicante">Alicante</option>
+              </select></label></p>
+              
+              <h4>2. Situación familiar</h4>
+              <p><strong>¿Tiene hijas/os a cargo?</strong><br>
+              <input type="radio" name="hijos" value="si" required> Sí &nbsp;&nbsp;&nbsp; 
+              <input type="radio" name="hijos" value="no"> No</p>
+              
+              <h4>3. Situación laboral actual</h4>
+              <p>
+              <input type="checkbox" name="situacion_laboral" value="empleo"> Empleo &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="situacion_laboral" value="desempleo"> Desempleo &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="situacion_laboral" value="economia_informal"> Economía informal &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="situacion_laboral" value="otra"> Otra
+              </p>
+              
+              <h4>4. Situación personal y emocional</h4>
+              <p><strong>5. ¿Ha vivido o vive actualmente una situación de violencia de género?</strong><br>
+              <input type="radio" name="violencia" value="si" required> Sí &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="violencia" value="no"> No &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="violencia" value="prefiere_no_responder"> Prefiere no responder</p>
+              
+              <p><strong>6. Tipo de violencia vivida (puede marcar varias):</strong><br>
+              <input type="checkbox" name="tipo_violencia" value="psicologica"> Psicológica &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="tipo_violencia" value="fisica"> Física &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="tipo_violencia" value="sexual"> Sexual &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="tipo_violencia" value="economica"> Económica &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="tipo_violencia" value="digital"> Digital
+              </p>
+              
+              <p><strong>7. En una escala del 1 al 5, ¿cómo valora actualmente su nivel de bienestar emocional?</strong><br>
+              <input type="number" name="bienestar" min="1" max="5" placeholder="1-5" required>
+              (1 = muy bajo / 5 = muy alto)</p>
+              
+              <h4>5. Red de apoyo y recursos</h4>
+              <p><strong>8. ¿Cuenta actualmente con apoyo social (familia, amistades, profesionales)?</strong><br>
+              <input type="radio" name="apoyo_social" value="si" required> Sí &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="apoyo_social" value="no"> No &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="apoyo_social" value="limitado"> De forma limitada</p>
+              
+              <p><strong>9. ¿Ha utilizado previamente recursos de apoyo a mujeres?</strong><br>
+              <input type="radio" name="recursos_previos" value="si" required> Sí &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="recursos_previos" value="no"> No</p>
+              
+              <h4>6. Expectativas sobre REM</h4>
+              <p><strong>10. ¿Qué espera encontrar en la plataforma REM?</strong><br>
+              <textarea name="expectativas_rem" placeholder="Escribe tu respuesta..." rows="3" required></textarea></p>
+              
+              <p><strong>11. ¿Qué tipo de apoyo considera prioritario?</strong><br>
+              <input type="checkbox" name="tipo_apoyo" value="psicologico"> Psicológico &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="tipo_apoyo" value="legal"> Legal &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="tipo_apoyo" value="acompanamiento"> Acompañamiento social &nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="tipo_apoyo" value="redes"> Redes de apoyo entre mujeres
+              </p>
+              
+              <button type="submit" class="btn-enviar">Enviar Cuestionario</button>
+            </form>
+          </div>
+          <div class="respuesta-gracias" style="display:none;">
+            <p>Gracias por tu compromiso y colaboración con REM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Evaluación Intermedia</button>
+      <div class="accordion-content">
+        <div class="cuestionario-container">
+          <div class="cuestionario-form">
+            <h3>Evaluación Intermedia</h3>
+            <form class="form-cuestionario" onsubmit="enviarCuestionario(event)">
+              
+              <p><strong>1. ¿Con qué frecuencia utiliza la plataforma REM?</strong><br>
+              <input type="radio" name="frecuencia" value="diariamente" required> Diariamente &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="frecuencia" value="semanalmente"> Semanalmente &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="frecuencia" value="ocasionalmente"> Ocasionalmente</p>
+              
+              <p><strong>2. En una escala del 1 al 5, valore la facilidad de uso de la plataforma.</strong><br>
+              <input type="number" name="facilidad_uso" min="1" max="5" placeholder="1-5" required>
+              (1 = muy difícil / 5 = muy fácil)</p>
+              
+              <p><strong>3. ¿Se siente segura utilizando REM?</strong><br>
+              <input type="radio" name="seguridad" value="si" required> Sí &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="seguridad" value="no"> No &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="seguridad" value="ocasiones"> En ocasiones</p>
+              
+              <p><strong>4. ¿Considera que ha recibido un acompañamiento adecuado por parte del equipo profesional?</strong><br>
+              <textarea name="acompanamiento" placeholder="Escribe tu respuesta..." rows="3" required></textarea></p>
+              
+              <p><strong>5. ¿Ha participado en talleres, chats o mentorías?</strong><br>
+              <input type="radio" name="participacion" value="si" required> Sí &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="participacion" value="no"> No</p>
+              
+              <p><strong>6. ¿Se ha sentido escuchada y validada emocionalmente dentro de la plataforma?</strong><br>
+              <textarea name="validacion" placeholder="Escribe tu respuesta..." rows="3" required></textarea></p>
+              
+              <p><strong>7. ¿Qué aspectos mejoraría del proyecto REM?</strong><br>
+              <textarea name="mejoras" placeholder="Escribe tu respuesta..." rows="3" required></textarea></p>
+              
+              <button type="submit" class="btn-enviar">Enviar Cuestionario</button>
+            </form>
+          </div>
+          <div class="respuesta-gracias" style="display:none;">
+            <p>Gracias por tu compromiso y colaboración con REM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Cuestionario Final de Evaluación</button>
+      <div class="accordion-content">
+        <div class="cuestionario-container">
+          <div class="cuestionario-form">
+            <h3>Cuestionario Final de Evaluación</h3>
+            <form class="form-cuestionario" onsubmit="enviarCuestionario(event)">
+              
+              <p><strong>1. En comparación con su situación inicial, ¿cómo valora ahora su autoestima?</strong><br>
+              <input type="radio" name="autoestima" value="mucho_peor" required> Mucho peor &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="autoestima" value="igual"> Igual &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="autoestima" value="mejor"> Mejor &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="autoestima" value="mucho_mejor"> Mucho mejor</p>
+              
+              <p><strong>2. ¿Siente que ha aumentado su capacidad para tomar decisiones sobre su vida?</strong><br>
+              <textarea name="capacidad_decisiones" placeholder="Escribe tu respuesta..." rows="3" required></textarea></p>
+              
+              <p><strong>3. ¿Ha ampliado su red de apoyo gracias a REM?</strong><br>
+              <input type="radio" name="red_apoyo" value="si" required> Sí &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="red_apoyo" value="no"> No</p>
+              
+              <p><strong>4. ¿Recomendaría la plataforma REM a otras mujeres?</strong><br>
+              <input type="radio" name="recomendacion" value="si" required> Sí &nbsp;&nbsp;&nbsp;
+              <input type="radio" name="recomendacion" value="no"> No</p>
+              
+              <p><strong>5. ¿Qué ha significado para usted participar en este proyecto?</strong><br>
+              <textarea name="significado" placeholder="Escribe tu respuesta..." rows="3" required></textarea></p>
+              
+              <p><strong>6. Valoración global del proyecto (1 a 5).</strong><br>
+              <input type="number" name="valoracion_global" min="1" max="5" placeholder="1-5" required>
+              (1 = muy insatisfecha / 5 = muy satisfecha)</p>
+              
+              <button type="submit" class="btn-enviar">Enviar Cuestionario</button>
+            </form>
+          </div>
+          <div class="respuesta-gracias" style="display:none;">
+            <p>Gracias por tu compromiso y colaboración con REM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px;"><a href="servicios.html">Volver a Servicios</a></p>
+  </div>
+
+  <style>
+    .cuestionario-container {
+      margin: 20px 0;
+    }
+
+    .cuestionario-form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .form-cuestionario h4 {
+      color: #8B4789;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .form-cuestionario input[type="text"],
+    .form-cuestionario input[type="number"],
+    .form-cuestionario select,
+    .form-cuestionario textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .form-cuestionario label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    .btn-enviar {
+      background: #c84a70;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .btn-enviar:hover {
+      background: #a83d5c;
+    }
+
+    .respuesta-gracias {
+      text-align: center;
+      padding: 40px;
+      background: #e8f5e9;
+      border-radius: 8px;
+      color: #2e7d32;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .accordion {
+      margin-bottom: 15px;
+    }
+    
+    .accordion-btn {
+      width: 100%;
+      padding: 15px;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+    
+    .accordion-btn:hover {
+      background: #e8e8e8;
+    }
+    
+    .accordion-content {
+      display: none;
+      padding: 15px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+    }
+    
+    .accordion-content h3 {
+      color: #c84a70;
+      margin-top: 0;
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector(".menu").classList.toggle("oculto");
+    }
+
+    function toggleAccordion(btn) {
+      const content = btn.nextElementSibling;
+      content.style.display = content.style.display === "block" ? "none" : "block";
+      btn.classList.toggle("active");
+    }
+
+    function solicitarSesion() {
+      alert('Se ha registrado tu solicitud. Un especialista se contactará contigo pronto para agendar tu sesión.');
+    }
+
+    function unirseGrupo() {
+      alert('Te enviaremos información sobre los grupos disponibles y cómo unirte.');
+    }
+
+    function enviarCuestionario(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const container = form.closest('.cuestionario-container');
+      const formDiv = container.querySelector('.cuestionario-form');
+      const graciasDiv = container.querySelector('.respuesta-gracias');
+      
+      // Ocultar formulario y mostrar mensaje
+      formDiv.style.display = 'none';
+      graciasDiv.style.display = 'block';
+      
+      // Guardar datos en localStorage
+      const formData = new FormData(form);
+      localStorage.setItem('cuestionario_' + Date.now(), JSON.stringify(Object.fromEntries(formData)));
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Taller Virtual - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <h1>Talleres Virtuales</h1>
+    <p>Sesiones en línea con profesionales para autocuidado, seguridad digital, recursos legales y mucho más. Participa de forma segura y anónima.</p>
+
+    <script>
+      // Verificar acceso a talleres cuando carga la página
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!verificarAcceso('taller', 'Taller Virtual')) {
+          // Si no tiene acceso, la función mostrarAccesoDenegado renderizará la página
+          return;
+        }
+      });
+    </script>
+
+    <!-- CONTENIDO DEL SERVICIO -->
+    <div class="accordion" style="margin-top: 30px;">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Talleres Disponibles Este Mes</button>
+      <div class="accordion-content">
+        <h3>Próximas sesiones</h3>
+        <div style="background: white; padding: 15px; border-radius: 6px; margin: 15px 0;">
+          <h4>🔒 Seguridad Digital y Privacidad Online</h4>
+          <p><strong>Fecha:</strong> Martes 21 de enero, 19:00-20:30</p>
+          <p><strong>Facilitador:</strong> Especialista en Ciberseguridad</p>
+          <p><strong>Contenido:</strong> Proteger tu información, rastreo digital, contraseñas seguras, privacidad en redes sociales</p>
+          <button onclick="registrarTaller('digital')" style="background: #c84a70; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">Registrarse</button>
+        </div>
+
+        <div style="background: white; padding: 15px; border-radius: 6px; margin: 15px 0;">
+          <h4>💪 Empoderamiento y Autoestima</h4>
+          <p><strong>Fecha:</strong> Miércoles 22 de enero, 18:00-19:30</p>
+          <p><strong>Facilitador:</strong> Psicóloga especializada en violencia</p>
+          <p><strong>Contenido:</strong> Reconstruir la confianza, límites saludables, asertividad, amor propio</p>
+          <button onclick="registrarTaller('empoderamiento')" style="background: #c84a70; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">Registrarse</button>
+        </div>
+
+        <div style="background: white; padding: 15px; border-radius: 6px; margin: 15px 0;">
+          <h4>⚖️ Tus Derechos Legales Explicados</h4>
+          <p><strong>Fecha:</strong> Jueves 23 de enero, 17:00-18:30</p>
+          <p><strong>Facilitador:</strong> Abogada especializada</p>
+          <p><strong>Contenido:</strong> Orden de protección, divorcio, custodia, ayudas económicas</p>
+          <button onclick="registrarTaller('legal')" style="background: #c84a70; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">Registrarse</button>
+        </div>
+
+        <div style="background: white; padding: 15px; border-radius: 6px; margin: 15px 0;">
+          <h4>🧘 Meditación y Relajación para la Recuperación</h4>
+          <p><strong>Fecha:</strong> Sábado 25 de enero, 10:00-11:00</p>
+          <p><strong>Facilitador:</strong> Instructora de Mindfulness</p>
+          <p><strong>Contenido:</strong> Técnicas de respiración, meditación guiada, gestión del estrés y ansiedad</p>
+          <button onclick="registrarTaller('meditacion')" style="background: #c84a70; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">Registrarse</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Acceder a Sesión en Vivo</button>
+      <div class="accordion-content">
+        <div class="taller-opciones">
+          <div class="taller-opcion">
+            <h4>Visualizar la sesión con los profesionales</h4>
+            <p>Solo los profesionales serán visibles en la pantalla. Participa de forma anónima.</p>
+            <button type="button" class="btn-enviar" onclick="accederSesion(this)">Acceder a la sesión</button>
+            <div class="transmision-profesionales" style="display:none; margin-top:15px; padding:15px; background:#000; border-radius:6px;">
+              <p style="color:#fff; text-align:center;">📹 Transmisión en vivo - Profesionales conectados</p>
+              <div style="background:#333; padding:40px; text-align:center; color:#aaa; border-radius:4px;">
+                [Ventana de video de los profesionales]
+              </div>
+              <p style="color:#ccc; margin-top:10px; font-size:12px;">Chat en vivo disponible para preguntas →</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Calendario Interactivo de Talleres</button>
+      <div class="accordion-content">
+        <h3>Calendario Completo de Talleres - 2026</h3>
+        <p style="font-size: 13px; color: #666; margin-bottom: 20px;">Consulta todos los talleres disponibles durante el año. Haz clic en los meses para expandir y ver los días con sesiones programadas.</p>
+        
+        <!-- ENERO -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)">📅 Enero 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia">
+            <strong>Enero</strong>
+            <p>No hay talleres programados este mes</p>
+          </div>
+        </div>
+
+        <!-- FEBRERO -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Febrero 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia">
+            <strong>Febrero</strong>
+            <p>No hay talleres programados este mes</p>
+          </div>
+        </div>
+
+        <!-- MARZO -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Marzo 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia dia-taller">
+            <strong>Mar 3</strong>
+            <p>19:00 - Educación Financiera</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 16/feb | Pro: desde 17/feb</p>
+            <button onclick="verificarInscripcionTaller('finanzas', '2026-03-03', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Mié 4</strong>
+            <p>18:00 - Comunicación Asertiva</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 17/feb | Pro: desde 18/feb</p>
+            <button onclick="verificarInscripcionTaller('empoderamiento', '2026-03-04', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Jue 5</strong>
+            <p>17:00 - Herramientas Legales</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 18/feb | Pro: desde 19/feb</p>
+            <button onclick="verificarInscripcionTaller('legal', '2026-03-05', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Sáb 7</strong>
+            <p>10:00 - Mindfulness</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 20/feb | Pro: desde 21/feb</p>
+            <button onclick="verificarInscripcionTaller('meditacion', '2026-03-07', this)">Inscribirme</button>
+          </div>
+        </div>
+
+        <!-- ABRIL -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Abril 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia dia-taller">
+            <strong>Mar 21</strong>
+            <p>19:00 - Seguridad Digital Avanzada</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 5/abr | Pro: desde 6/abr</p>
+            <button onclick="verificarInscripcionTaller('digital', '2026-04-21', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Mié 22</strong>
+            <p>18:00 - Recuperación Emocional</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 6/abr | Pro: desde 7/abr</p>
+            <button onclick="verificarInscripcionTaller('empoderamiento', '2026-04-22', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Jue 23</strong>
+            <p>17:00 - Derechos de Custodia</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 7/abr | Pro: desde 8/abr</p>
+            <button onclick="verificarInscripcionTaller('legal', '2026-04-23', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Sáb 25</strong>
+            <p>10:00 - Relajación Progresiva</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 9/abr | Pro: desde 10/abr</p>
+            <button onclick="verificarInscripcionTaller('meditacion', '2026-04-25', this)">Inscribirme</button>
+          </div>
+        </div>
+
+        <!-- MAYO -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Mayo 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia dia-taller">
+            <strong>Mar 5</strong>
+            <p>19:00 - Protección Online</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 19/abr | Pro: desde 20/abr</p>
+            <button onclick="verificarInscripcionTaller('digital', '2026-05-05', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Mié 6</strong>
+            <p>18:00 - Límites Saludables</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 20/abr | Pro: desde 21/abr</p>
+            <button onclick="verificarInscripcionTaller('empoderamiento', '2026-05-06', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Jue 7</strong>
+            <p>17:00 - Pensión y Manutención</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 21/abr | Pro: desde 22/abr</p>
+            <button onclick="verificarInscripcionTaller('legal', '2026-05-07', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Sáb 9</strong>
+            <p>10:00 - Yoga para el Trauma</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 23/abr | Pro: desde 24/abr</p>
+            <button onclick="verificarInscripcionTaller('yoga', '2026-05-09', this)">Inscribirme</button>
+          </div>
+        </div>
+
+        <!-- JUNIO -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Junio 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia dia-taller">
+            <strong>Mar 16</strong>
+            <p>19:00 - Privacidad en Redes Sociales</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 31/may | Pro: desde 1/jun</p>
+            <button onclick="verificarInscripcionTaller('digital', '2026-06-16', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Mié 17</strong>
+            <p>18:00 - Resiliencia y Fortaleza</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 1/jun | Pro: desde 2/jun</p>
+            <button onclick="verificarInscripcionTaller('empoderamiento', '2026-06-17', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Jue 18</strong>
+            <p>17:00 - Órdenes de Protección</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 2/jun | Pro: desde 3/jun</p>
+            <button onclick="verificarInscripcionTaller('legal', '2026-06-18', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Sáb 20</strong>
+            <p>10:00 - Meditación en Movimiento</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 4/jun | Pro: desde 5/jun</p>
+            <button onclick="verificarInscripcionTaller('meditacion', '2026-06-20', this)">Inscribirme</button>
+          </div>
+        </div>
+
+        <!-- JULIO -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Julio 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia dia-taller">
+            <strong>Mar 21</strong>
+            <p>19:00 - Control Parental y Seguridad</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 5/jul | Pro: desde 6/jul</p>
+            <button onclick="verificarInscripcionTaller('digital', '2026-07-21', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Mié 22</strong>
+            <p>18:00 - Independencia Económica</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 6/jul | Pro: desde 7/jul</p>
+            <button onclick="verificarInscripcionTaller('finanzas', '2026-07-22', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Jue 23</strong>
+            <p>17:00 - Herencias y Bienes</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 7/jul | Pro: desde 8/jul</p>
+            <button onclick="verificarInscripcionTaller('legal', '2026-07-23', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Sáb 25</strong>
+            <p>10:00 - Tai Chi para la Paz</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 9/jul | Pro: desde 10/jul</p>
+            <button onclick="verificarInscripcionTaller('yoga', '2026-07-25', this)">Inscribirme</button>
+          </div>
+        </div>
+
+        <!-- AGOSTO -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Agosto 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia dia-taller">
+            <strong>Mar 4</strong>
+            <p>19:00 - Huella Digital Segura</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 19/jul | Pro: desde 20/jul</p>
+            <button onclick="verificarInscripcionTaller('digital', '2026-08-04', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Mié 5</strong>
+            <p>18:00 - Amor Propio y Autocuidado</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 20/jul | Pro: desde 21/jul</p>
+            <button onclick="verificarInscripcionTaller('empoderamiento', '2026-08-05', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Jue 6</strong>
+            <p>17:00 - Apoyo a Hijos/as</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 21/jul | Pro: desde 22/jul</p>
+            <button onclick="verificarInscripcionTaller('legal', '2026-08-06', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Sáb 8</strong>
+            <p>10:00 - Respiración Consciente</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 23/jul | Pro: desde 24/jul</p>
+            <button onclick="verificarInscripcionTaller('meditacion', '2026-08-08', this)">Inscribirme</button>
+          </div>
+        </div>
+
+        <!-- SEPTIEMBRE -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Septiembre 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia dia-taller">
+            <strong>Mar 15</strong>
+            <p>19:00 - Ciberacoso y Resolución</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 30/ago | Pro: desde 31/ago</p>
+            <button onclick="verificarInscripcionTaller('digital', '2026-09-15', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Mié 16</strong>
+            <p>18:00 - Reconstrucción Personal</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 31/ago | Pro: desde 1/sep</p>
+            <button onclick="verificarInscripcionTaller('empoderamiento', '2026-09-16', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Jue 17</strong>
+            <p>17:00 - Mediación Familiar</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 1/sep | Pro: desde 2/sep</p>
+            <button onclick="verificarInscripcionTaller('legal', '2026-09-17', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Sáb 19</strong>
+            <p>10:00 - Gratitud y Bienestar</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 3/sep | Pro: desde 4/sep</p>
+            <button onclick="verificarInscripcionTaller('meditacion', '2026-09-19', this)">Inscribirme</button>
+          </div>
+        </div>
+
+        <!-- OCTUBRE -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Octubre 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia dia-taller">
+            <strong>Mar 20</strong>
+            <p>19:00 - Seguridad en el Hogar</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 4/oct | Pro: desde 5/oct</p>
+            <button onclick="verificarInscripcionTaller('digital', '2026-10-20', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Mié 21</strong>
+            <p>18:00 - Empoderamiento Laboral</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 5/oct | Pro: desde 6/oct</p>
+            <button onclick="verificarInscripcionTaller('finanzas', '2026-10-21', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Jue 22</strong>
+            <p>17:00 - Violencia Patrimonial</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 6/oct | Pro: desde 7/oct</p>
+            <button onclick="verificarInscripcionTaller('legal', '2026-10-22', this)">Inscribirme</button>
+          </div>
+          <div class="dia dia-taller">
+            <strong>Sáb 24</strong>
+            <p>10:00 - Yoga Restaurativo</p>
+            <p style="font-size: 11px; color: #c84a70; font-weight: bold;">Premium: desde 8/oct | Pro: desde 9/oct</p>
+            <button onclick="verificarInscripcionTaller('yoga', '2026-10-24', this)">Inscribirme</button>
+          </div>
+        </div>
+
+        <!-- NOVIEMBRE -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Noviembre 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia">
+            <strong>Noviembre</strong>
+            <p>No hay talleres programados este mes</p>
+          </div>
+        </div>
+
+        <!-- DICIEMBRE -->
+        <button class="mes-btn collapsed" onclick="toggleMes(this)" style="margin-top: 15px;">📅 Diciembre 2026</button>
+        <div class="dias-grid" style="display: none;">
+          <div class="dia">
+            <strong>Diciembre</strong>
+            <p>No hay talleres programados este mes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Materiales y Recursos Descargables</button>
+      <div class="accordion-content">
+        <h3>Documentos y Guías</h3>
+        <p>Accede a materiales de todos los talleres realizados:</p>
+        
+        <div class="materiales-lista">
+          <div class="material-item">
+            <div class="material-icono">📄</div>
+            <div class="material-info">
+              <h4>Guía de Seguridad Digital</h4>
+              <p>PDF completo con herramientas y consejos para proteger tu privacidad online</p>
+              <a href="#" class="btn-descarga">Descargar PDF</a>
+            </div>
+          </div>
+
+          <div class="material-item">
+            <div class="material-icono">📝</div>
+            <div class="material-info">
+              <h4>Ejercicios de Empoderamiento</h4>
+              <p>Cuaderno de trabajo para reconstruir autoestima y límites saludables</p>
+              <a href="#" class="btn-descarga">Descargar PDF</a>
+            </div>
+          </div>
+
+          <div class="material-item">
+            <div class="material-icono">⚖️</div>
+            <div class="material-info">
+              <h4>Checklist de Derechos Legales</h4>
+              <p>Lista de verificación sobre orden de protección, custodia y ayudas económicas</p>
+              <a href="#" class="btn-descarga">Descargar PDF</a>
+            </div>
+          </div>
+
+          <div class="material-item">
+            <div class="material-icono">🎧</div>
+            <div class="material-info">
+              <h4>Audios de Meditación Guiada</h4>
+              <p>Sesiones de 5, 10 y 15 minutos para gestionar ansiedad y estrés</p>
+              <a href="#" class="btn-descarga">Descargar ZIP</a>
+            </div>
+          </div>
+
+          <div class="material-item">
+            <div class="material-icono">📊</div>
+            <div class="material-info">
+              <h4>Plantilla de Presupuesto Personal</h4>
+              <p>Excel editable para gestionar finanzas y planificar independencia económica</p>
+              <a href="#" class="btn-descarga">Descargar XLSX</a>
+            </div>
+          </div>
+
+          <div class="material-item">
+            <div class="material-icono">🎥</div>
+            <div class="material-info">
+              <h4>Grabaciones de Talleres Pasados</h4>
+              <p>Videos de talleres anteriores (disponible para quienes dieron consentimiento)</p>
+              <a href="#" class="btn-descarga">Ver Lista</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="materiales-nota">
+          <p><strong>Nota:</strong> Todos los materiales están diseñados por profesionales especializados en violencia de género. Puedes descargarlos y consultarlos en cualquier momento. Si necesitas ayuda para acceder a algún recurso, contacta con nuestro equipo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Cómo Participar de Forma Segura</button>
+      <div class="accordion-content">
+        <h3>Privacidad y Seguridad Garantizada</h3>
+        <p>Todos nuestros talleres se realizan con máximas medidas de seguridad:</p>
+        <ul>
+          <li>✓ Plataforma cifrada de extremo a extremo</li>
+          <li>✓ Cámaras opcionales (participa sin video si prefieres)</li>
+          <li>✓ Audio privado (solo tú escuchas)</li>
+          <li>✓ Sin grabaciones sin tu consentimiento</li>
+          <li>✓ Sala de espera privada antes de entrar</li>
+          <li>✓ Moderador presente en todo momento</li>
+          <li>✓ Participantes anónimas si así lo deseas</li>
+        </ul>
+        <p><strong>Pasos para participar:</strong></p>
+        <ol>
+          <li>Haz clic en "Registrarse" en el taller que te interese</li>
+          <li>Recibirás enlace privado por correo/chat</li>
+          <li>Entra 5 minutos antes de la hora</li>
+          <li>Participa de forma anónima o con tu nombre real (tu elección)</li>
+          <li>Al terminar, recibirás materiales y grabación (si aplica)</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Calendario Completo de Talleres</button>
+      <div class="accordion-content">
+        <h3>Todos los talleres por categoría</h3>
+        <p><strong>Seguridad y Privacidad:</strong> Cada martes a las 19:00</p>
+        <p><strong>Bienestar y Autocuidado:</strong> Cada sábado a las 10:00</p>
+        <p><strong>Empoderamiento:</strong> Cada miércoles a las 18:00</p>
+        <p><strong>Recursos Legales:</strong> Cada jueves a las 17:00</p>
+        <p><strong>Vida Práctica:</strong> Cada viernes a las 18:00 (presupuesto, empleo, vivienda, etc.)</p>
+        
+        <div style="background: #e8f4f8; padding: 15px; border-radius: 6px; margin-top: 15px;">
+          <p><strong>📅 Plan Pro:</strong> Acceso a 1 taller por mes</p>
+          <p><strong>📅 Plan Premium:</strong> Acceso ilimitado a todos los talleres + talleres privados personalizados</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Preguntas Frecuentes</button>
+      <div class="accordion-content">
+        <h3>¿Necesito tener cámara?</h3>
+        <p>No. Los talleres funcionan perfectamente solo con audio. La cámara es completamente opcional.</p>
+
+        <h3>¿Qué necesito tecnológicamente?</h3>
+        <p>Un dispositivo (computadora, tablet o teléfono) con conexión a internet. Usamos plataformas web, no requiere descargas.</p>
+
+        <h3>¿Puedo participar de forma anónima?</h3>
+        <p>Sí. Puedes usar un seudónimo y no mostrar tu cámara. Tu privacidad es lo más importante.</p>
+
+        <h3>¿Se graban los talleres?</h3>
+        <p>Solo con permiso de todos los participantes. Los materiales grabados se envían después a quienes dieron consentimiento.</p>
+
+        <h3>¿Puedo hacer preguntas?</h3>
+        <p>Por supuesto. Hay espacio para chat privado con los facilitadores si prefieres no hablar en voz.</p>
+
+        <h3>¿Qué pasa si no puedo asistir a la hora programada?</h3>
+        <p>Si tienes acceso a la grabación, puedes verla después. Avísanos para asegurarnos que recibas los materiales.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px;"><a href="servicios.html">Volver a Servicios</a></p>
+  </div>
+
+  <style>
+    .accordion {
+      margin-bottom: 15px;
+    }
+    
+    .accordion-btn {
+      width: 100%;
+      padding: 15px;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+    
+    .accordion-btn:hover {
+      background: #e8e8e8;
+    }
+    
+    .accordion-content {
+      display: none;
+      padding: 15px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+    }
+    
+    .accordion-content h3 {
+      color: #c84a70;
+      margin-top: 0;
+    }
+
+    .accordion-content h4 {
+      color: #4b3278;
+      margin: 0 0 10px 0;
+    }
+
+    .taller-opciones {
+      margin: 20px 0;
+    }
+
+    .taller-opcion {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .taller-opcion h4 {
+      color: #8B4789;
+      margin-top: 0;
+    }
+
+    .btn-enviar {
+      background: #c84a70;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-enviar:hover {
+      background: #a83d5c;
+    }
+
+    .transmision-profesionales {
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .mes-btn {
+      width: 100%;
+      padding: 12px;
+      background: #4b3278;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      text-align: left;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .mes-btn:hover {
+      background: #5e3d96;
+    }
+
+    .mes-btn.expanded {
+      background: #c84a70;
+    }
+
+    .dias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dia {
+      background: white;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .dia strong {
+      display: block;
+      color: #4b3278;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .dia p {
+      margin: 5px 0;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .dia-taller {
+      border-color: #c84a70;
+      background: #fff5f8;
+    }
+
+    .dia-taller button {
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: #c84a70;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .dia-taller button:hover {
+      background: #a83d5c;
+    }
+
+    .materiales-lista {
+      margin: 20px 0;
+    }
+
+    .material-item {
+      display: flex;
+      gap: 15px;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .material-icono {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .material-info {
+      flex-grow: 1;
+    }
+
+    .material-info h4 {
+      margin: 0 0 5px 0;
+      color: #4b3278;
+      font-size: 16px;
+    }
+
+    .material-info p {
+      margin: 0 0 10px 0;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .btn-descarga {
+      display: inline-block;
+      background: #c84a70;
+      color: white;
+      padding: 6px 15px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .btn-descarga:hover {
+      background: #a83d5c;
+    }
+
+    .materiales-nota {
+      background: #e8f4f8;
+      padding: 15px;
+      border-left: 4px solid #4b3278;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+
+    .materiales-nota p {
+      margin: 0;
+      font-size: 13px;
+      color: #333;
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector(".menu").classList.toggle("oculto");
+    }
+
+    function toggleAccordion(btn) {
+      const content = btn.nextElementSibling;
+      content.style.display = content.style.display === "block" ? "none" : "block";
+      btn.classList.toggle("active");
+    }
+
+    function accederSesion(btn) {
+      const transmision = btn.closest('.taller-opcion').querySelector('.transmision-profesionales');
+      const isOpen = transmision.style.display === 'block';
+
+      if (isOpen) {
+        transmision.style.display = 'none';
+        btn.textContent = 'Acceder a la sesión';
+      } else {
+        transmision.style.display = 'block';
+        btn.textContent = 'Cerrar sesión';
+      }
+    }
+
+    function toggleMes(btn) {
+      const diasGrid = btn.nextElementSibling;
+      const isOpen = diasGrid.style.display === 'grid';
+
+      if (isOpen) {
+        diasGrid.style.display = 'none';
+        btn.classList.remove('expanded');
+        btn.classList.add('collapsed');
+      } else {
+        diasGrid.style.display = 'grid';
+        btn.classList.remove('collapsed');
+        btn.classList.add('expanded');
+      }
+    }
+
+    function registrarTaller(taller) {
+      const nombres = {
+        'digital': 'Seguridad Digital',
+        'empoderamiento': 'Empoderamiento',
+        'legal': 'Derechos Legales',
+        'meditacion': 'Meditación y Relajación',
+        'finanzas': 'Educación Financiera',
+        'yoga': 'Yoga y Bienestar'
+      };
+      alert(`Te has registrado al taller de ${nombres[taller]}. Recibirás el enlace de acceso por correo.`);
+    }
+
+    function verificarInscripcionTaller(taller, fechaTaller, boton) {
+      const plan = obtenerPlanActual();
+      
+      if (!plan || plan === 'basico') {
+        mostrarAccesoDenegado('taller', 'Talleres Virtuales');
+        return;
+      }
+
+      // Calcular fecha actual (simulada: 14 enero 2026)
+      const hoy = new Date('2026-01-14');
+      const fechaTallerObj = new Date(fechaTaller);
+      
+      // Calcular días de diferencia
+      const diffTime = fechaTallerObj - hoy;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      // Verificar prioridad según plan
+      if (plan === 'premium') {
+        if (diffDays >= 16) {
+          registrarTaller(taller);
+        } else {
+          alert('⏰ Inscripción aún no disponible. Los usuarios Premium pueden inscribirse desde 16 días antes del taller.');
+        }
+      } else if (plan === 'pro') {
+        if (diffDays >= 15 && diffDays < 16) {
+          registrarTaller(taller);
+        } else if (diffDays < 15) {
+          alert('⏰ Inscripción aún no disponible. Los usuarios Pro pueden inscribirse desde 15 días antes del taller.');
+        } else {
+          alert('🌟 Este periodo de inscripción está reservado para usuarios Premium (16 días antes). Tu inscripción estará disponible mañana.');
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

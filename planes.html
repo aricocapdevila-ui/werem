@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Planes - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <h1>Nuestros Planes</h1>
+    <p>Elige el plan que mejor se adapte a tus necesidades. Todos nuestros planes incluyen acceso a recursos esenciales de apoyo y seguridad.</p>
+
+    <div class="planes-grid">
+      
+      <!-- PLAN BÁSICO -->
+      <div class="plan-tarjeta plan-basico">
+        <div class="plan-header">
+          <h2>Básico</h2>
+          <p class="plan-precio">Gratuito</p>
+        </div>
+        <div class="plan-contenido">
+          <ul class="plan-features">
+            <li>✓ Acceso a foro seguro</li>
+            <li>✓ Guías y recursos descargables</li>
+            <li>✓ Información sobre derechos legales</li>
+            <li>✓ Directorio de servicios</li>
+            <li>✓ Números de emergencia y contactos</li>
+          </ul>
+          <p class="plan-descripcion">Perfecto para conocer la plataforma y acceder a información básica sobre violencia de género y tus derechos.</p>
+          <button class="plan-btn plan-btn-basico" onclick="seleccionarPlan('basico')">Acceder</button>
+        </div>
+      </div>
+
+      <!-- PLAN PRO -->
+      <div class="plan-tarjeta plan-pro">
+        <div class="plan-header plan-destacado">
+          <h2>Pro</h2>
+          <p class="plan-precio">Recomendado</p>
+        </div>
+        <div class="plan-contenido">
+          <ul class="plan-features">
+            <li>✓ Todo lo del plan Básico</li>
+            <li>✓ Chat de apoyo 24h con especialistas</li>
+            <li>✓ Asesoramiento jurídico inicial</li>
+            <li>✓ Talleres virtuales mensuales</li>
+            <li>✓ Apoyo psicológico (hasta 4 sesiones/mes)</li>
+            <li>✓ Acceso a mentorías de pares</li>
+          </ul>
+          <p class="plan-descripcion">Acceso completo a apoyo emocional, legal y psicológico con profesionales especializados.</p>
+          <button class="plan-btn plan-btn-pro" onclick="seleccionarPlan('pro')">Seleccionar Plan</button>
+        </div>
+      </div>
+
+      <!-- PLAN PREMIUM -->
+      <div class="plan-tarjeta plan-premium">
+        <div class="plan-header">
+          <h2>Premium</h2>
+          <p class="plan-precio">Máximo Apoyo</p>
+        </div>
+        <div class="plan-contenido">
+          <ul class="plan-features">
+            <li>✓ Todo lo del plan Pro</li>
+            <li>✓ Chat prioritario 24/7</li>
+            <li>✓ Asesoramiento jurídico especializado (ilimitado)</li>
+            <li>✓ Apoyo psicológico intensivo (hasta 8 sesiones/mes)</li>
+            <li>✓ Acompañamiento personalizado</li>
+            <li>✓ Acceso prioritario 24h a talleres virtuales</li>
+            <li>✓ Taller privado con profesionales</li>
+            <li>✓ Seguimiento y evaluación continua</li>
+            <li>✓ Recursos adicionales y materiales exclusivos</li>
+          </ul>
+          <p class="plan-descripcion">Atención integral y personalizada con acceso prioritario a todos nuestros profesionales.</p>
+          <button class="plan-btn plan-btn-premium" onclick="seleccionarPlan('premium')">Seleccionar Plan</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TABLA COMPARATIVA -->
+    <h2 style="margin-top: 50px; text-align: center;">Comparativa de Planes</h2>
+    <div class="tabla-comparativa" style="overflow-x: auto; margin: 30px 0;">
+      <table style="width: 100%; border-collapse: collapse; text-align: center;">
+        <thead>
+          <tr style="background-color: #f0f0f0;">
+            <th style="border: 1px solid #ddd; padding: 12px;">Característica</th>
+            <th style="border: 1px solid #ddd; padding: 12px;">Básico</th>
+            <th style="border: 1px solid #ddd; padding: 12px;">Pro</th>
+            <th style="border: 1px solid #ddd; padding: 12px;">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px; text-align: left;"><strong>Precio</strong></td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Gratuito</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Contacta</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Contacta</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px; text-align: left;"><strong>Acceso a foro</strong></td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✓</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✓</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✓</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px; text-align: left;"><strong>Chat 24h</strong></td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✗</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✓</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✓ Prioritario</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px; text-align: left;"><strong>Asesoramiento Jurídico</strong></td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Básico</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Inicial</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Ilimitado</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px; text-align: left;"><strong>Apoyo Psicológico</strong></td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✗</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Hasta 4/mes</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Hasta 8/mes</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px; text-align: left;"><strong>Talleres y Mentorías</strong></td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✗</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✓</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✓ Prioridad 24h + Privados</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px; text-align: left;"><strong>Acompañamiento Personalizado</strong></td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✗</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✗</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <h2 style="text-align: center; margin-top: 50px;">Preguntas Frecuentes sobre Planes</h2>
+    <div class="accordion" style="margin-top: 20px;">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">¿Puedo cambiar de plan?</button>
+      <div class="accordion-content">
+        <p>Sí, puedes cambiar de plan en cualquier momento. Si necesitas escalar a un plan superior, simplemente contacta con nuestro equipo y realizaremos la transición de inmediato.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">¿Qué pasa si no puedo pagar?</button>
+      <div class="accordion-content">
+        <p>El plan Básico es completamente gratuito y ofrece acceso a recursos esenciales. Si necesitas servicios adicionales pero tienes dificultades económicas, contacta con nosotros. Podemos analizar ayudas y opciones de financiamiento.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">¿Mis datos son seguros?</button>
+      <div class="accordion-content">
+        <p>Sí, absolutamente. Todos nuestros planes incluyen cifrado de datos, almacenamiento seguro y privacidad total. Tu información nunca será compartida sin tu consentimiento explícito.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">¿Puedo usar un seudónimo?</button>
+      <div class="accordion-content">
+        <p>Sí. En todos nuestros planes puedes mantener tu anonimato usando un seudónimo en lugar de tu nombre real. Tu identidad está protegida en todo momento.</p>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 30px;"><a href="index.html">Volver al inicio</a></p>
+  </div>
+
+  <script src="plan-control.js"></script>
+  <script>
+  function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("oculto");
+  }
+
+  function toggleAccordion(button) {
+    const content = button.nextElementSibling;
+    content.style.display = content.style.display === "block" ? "none" : "block";
+    button.classList.toggle("active");
+  }
+
+  function seleccionarPlan(plan) {
+    // Guardar el plan seleccionado
+    guardarPlan(plan);
+    
+    // Mostrar confirmación con indicador visual
+    const planTexto = plan.charAt(0).toUpperCase() + plan.slice(1);
+    const btn = event.target;
+    const textoOriginal = btn.textContent;
+    
+    btn.textContent = '✓ Plan seleccionado';
+    btn.style.background = '#4caf50';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      alert(`¡Felicidades! Has seleccionado el plan ${planTexto}. Ahora tendrás acceso a todos los servicios disponibles en este plan.`);
+      window.location.href = 'servicios.html';
+    }, 500);
+  }
+  </script>
+
+</body>
+</html>

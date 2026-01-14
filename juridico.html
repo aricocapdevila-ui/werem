@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Asesoramiento Jurídico - WeRem</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="plan-control.js"></script>
+</head>
+<body class="form-page">
+
+<!-- BOTÓN OPCIONES -->
+<div class="boton-menu" onclick="toggleMenu()">
+  ☰ Opciones
+</div>
+
+<!-- MENÚ OCULTO -->
+<nav class="menu oculto">
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="guia.html">Guía de Uso</a></li>
+    <li><a href="formulario.html">Formulario</a></li>
+    <li><a href="chat.html">Chat (24h)</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="planes.html">Planes</a></li>
+    <li><a href="mi-plan.html">Mi Plan</a></li>
+    <li><a href="#informacion">Información</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+  <div class="contenedor">
+    <h1>Asesoramiento Jurídico</h1>
+    <p>Recibe orientación legal gratuita y confidencial de nuestros expertos en derechos de las mujeres y protección legal.</p>
+
+    <script>
+      // Verificar acceso al asesoramiento jurídico cuando carga la página
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!verificarAcceso('juridico', 'Asesoramiento Jurídico')) {
+          // Si no tiene acceso, la función mostrarAccesoDenegado renderizará la página
+          return;
+        }
+      });
+    </script>
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Derechos Legales Básicos</button>
+      <div class="accordion-content">
+        <h3>Tus derechos ante la violencia de género</h3>
+        <p><strong>Protección legal:</strong> Toda mujer tiene derecho a recibir protección legal, sin importar su situación migratoria, económica o familiar.</p>
+        <p><strong>Orden de protección:</strong> Puedes solicitar una orden de protección que obliga al agresor a mantener distancia y puede incluir prohibición de comunicación, acercamiento o contacto.</p>
+        <p><strong>Asistencia letrada gratuita:</strong> Tienes derecho a un abogado/a de oficio si no puedes pagar uno.</p>
+        <p><strong>Acceso a la justicia:</strong> Puedes denunciar en cualquier momento, sin límite de tiempo en la mayoría de los casos de violencia de género.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Proceso de Denuncia</button>
+      <div class="accordion-content">
+        <h3>Cómo interponer una denuncia</h3>
+        <p><strong>Dónde denunciar:</strong></p>
+        <ul>
+          <li>Policía Nacional</li>
+          <li>Guardia Civil</li>
+          <li>Policía Local</li>
+          <li>Juzgados de Violencia sobre la Mujer</li>
+          <li>Fiscalía especializada en violencia de género</li>
+        </ul>
+        <p><strong>Documentación necesaria:</strong></p>
+        <ul>
+          <li>Documento de identidad</li>
+          <li>Pruebas de violencia (fotos, mensajes, testigos)</li>
+          <li>Historial médico o psicológico si es relevante</li>
+          <li>Testigos que puedan confirmar los hechos</li>
+        </ul>
+        <p><strong>Confidencialidad:</strong> Tu denuncia será tratada de forma confidencial y segura. Nadie necesita saberlo excepto las autoridades necesarias.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Medidas de Protección</button>
+      <div class="accordion-content">
+        <h3>Medidas legales de protección disponibles</h3>
+        <p><strong>Orden de Protección:</strong> La medida judicial más importante. Incluye:</p>
+        <ul>
+          <li>Prohibición de aproximación a la víctima</li>
+          <li>Prohibición de comunicación por cualquier medio</li>
+          <li>Custodia y cuidado de los hijos</li>
+          <li>Uso de la vivienda</li>
+          <li>Prestación por separación temporal del trabajo</li>
+        </ul>
+        <p><strong>Solicitud de medidas urgentes:</strong> Pueden ser aprobadas en 72 horas si hay riesgo inmediato.</p>
+        <p><strong>Medidas en caso de separación o divorcio:</strong> Protección del patrimonio, pensión de alimentos, custodia segura de menores.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Derechos Laborales y Económicos</button>
+      <div class="accordion-content">
+        <h3>Protección en el trabajo y recursos económicos</h3>
+        <p><strong>Permiso de ausencia del trabajo:</strong> Tienes derecho a faltar al trabajo para atender cuestiones legales, médicas o de seguridad sin perder el empleo.</p>
+        <p><strong>Cambio de horario:</strong> Puedes solicitar cambios de horario o puesto por razones de seguridad.</p>
+        <p><strong>Excedencia por violencia de género:</strong> Posibilidad de dejar temporalmente el trabajo sin perder derechos.</p>
+        <p><strong>Prestación económica:</strong> Acceso a ayudas económicas, alojamiento de emergencia, y prestaciones por situación de necesidad.</p>
+        <p><strong>Protección de datos:</strong> Tu empleador debe mantener confidencialidad sobre tu situación de violencia.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Protección de Menores</button>
+      <div class="accordion-content">
+        <h3>Derechos de tus hijos/as</h3>
+        <p><strong>Custodia exclusiva:</strong> Puedes solicitar custodia exclusiva si existe riesgo para los menores.</p>
+        <p><strong>Visitas supervisadas:</strong> Las visitas del padre/madre pueden ser supervisadas por profesionales si existe riesgo.</p>
+        <p><strong>Protección en la escuela:</strong> Los centros educativos tienen protocolos para proteger a menores de padres agresores.</p>
+        <p><strong>Pensión de alimentos:</strong> Derecho a pensión de alimentos garantizada por el estado.</p>
+        <p><strong>Violencia vicaria:</strong> El uso de menores como arma de control es delito y tiene protección legal específica.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">+ Preguntas Frecuentes Legales</button>
+      <div class="accordion-content">
+        <h3>Dudas legales comunes</h3>
+        <p><strong>¿Puedo denunciar sin retirar después?</strong><br>
+        Sí. Una vez denunciado, la responsabilidad es del estado, no de la víctima. Aunque retires la denuncia, las investigaciones pueden continuar.</p>
+        
+        <p><strong>¿Qué pasa si no tengo documentación?</strong><br>
+        No es impedimento para denunciar o acceder a protección. Tienes derechos como persona, independientemente de tu estatus legal.</p>
+        
+        <p><strong>¿Cuánto tiempo toma obtener una orden de protección?</strong><br>
+        Las medidas urgentes pueden ser aprobadas en 72 horas. El proceso completo puede tardar más pero la protección es inmediata.</p>
+        
+        <p><strong>¿Perderé la custodia de mis hijos?</strong><br>
+        No automáticamente. El objetivo es protegerte a ti y a tus hijos. La custodia se asigna en el mejor interés del menor.</p>
+        
+        <p><strong>¿Es confidencial el proceso?</strong><br>
+        Sí. Los procesos de violencia de género tienen protocolos de confidencialidad estrictos.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background: linear-gradient(135deg, #fce4ec 0%, #f0e6f5 100%); border-radius: 8px; border-left: 4px solid #d4577b;">
+      <h3 style="color: #8B4789; margin-top: 0;">Contacto de Emergencia</h3>
+      <p><strong>Teléfono de Emergencias:</strong> 112</p>
+      <p><strong>Teléfono de Violencia de Género (24h):</strong> 016</p>
+      <p><strong>WhatsApp 24h:</strong> 600 000 016</p>
+      <p><strong>Chat en línea:</strong> Disponible en este sitio</p>
+      <p style="margin-bottom: 0;"><em>Todas las líneas son confidenciales, gratuitas y no dejan rastro en el historial de llamadas.</em></p>
+    </div>
+
+    <p style="margin-top: 30px;"><a href="servicios.html">← Volver a Servicios</a></p>
+  </div>
+
+  <script>
+  function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("oculto");
+  }
+
+  function toggleAccordion(button) {
+    const content = button.nextElementSibling;
+    const isOpen = content.style.display === 'block';
+    
+    // Cerrar todos los acordeones
+    document.querySelectorAll('.accordion-content').forEach(function(item) {
+      item.style.display = 'none';
+    });
+    document.querySelectorAll('.accordion-btn').forEach(function(btn) {
+      btn.textContent = btn.textContent.replace('- ', '+ ');
+    });
+    
+    // Abrir el clickeado si no estaba abierto
+    if (!isOpen) {
+      content.style.display = 'block';
+      button.textContent = button.textContent.replace('+ ', '- ');
+    }
+  }
+  </script>
+
+  <!-- FOOTER -->
+  <div class="info-sections" id="informacion">
+    <div class="info-section">
+      <h3>Información Legal</h3>
+      <p>Este sitio proporciona información general sobre derechos legales. Para asesoramiento legal específico, consulta con un abogado/a especializado/a.</p>
+    </div>
+    <hr>
+    <div class="info-section">
+      <h3>Contacto y Redes de Apoyo</h3>
+      <p>
+        <strong>Teléfono:</strong> 016 (violencia de género)<br>
+        <strong>Email:</strong> info@werem.org<br>
+        <strong>Ubicación:</strong> Alicante, España
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
